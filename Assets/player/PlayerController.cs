@@ -10,22 +10,28 @@ public class PlayerController : MonoBehaviour
 	public float jumpForce = 1;
 
 	[SerializeField] SpriteRenderer handHitbox;
+	[SerializeField] Transform hand;
 
+	Collider2D collider;
 	Rigidbody2D rb;
 	HingeJoint2D handJoint;
 
-	int ropeMask;
+	Rigidbody2D grabbed = null;
+
+	LayerMask ropeMask;
 
 	void Awake()
 	{
 		handJoint = GetComponent<HingeJoint2D>();
 		rb = GetComponent<Rigidbody2D>();
+		collider = GetComponent<Collider2D>();
 		ropeMask = LayerMask.GetMask("Rope");
 	}
 
 	private void Start()
 	{
-		handJoint.anchor = transform.worldToLocalMatrix * handHitbox.bounds.center;
+		handJoint.anchor = hand.localPosition;
+
 	}
 
 
@@ -54,12 +60,23 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	Rigidbody2D grabbed = null;
 
 	private void Grab()
 	{
 		if (grabbed != null) { return; }
 		var collision = Physics2D.OverlapArea(handHitbox.bounds.min, handHitbox.bounds.max, ropeMask);
+		//Collider2D collision = null;
+		//float best = float.PositiveInfinity;
+		//foreach (var c in collisions)
+		//{
+		//	var dist = (collision.transform.position - hand.position).sqrMagnitude;
+		//	if (dist < best)
+		//	{
+		//		collision = c;
+		//		best = dist;
+		//	}
+		//}
+
 		var grabbedRB = collision?.GetComponent<Rigidbody2D>();
 
 		Debug.Log(grabbedRB);
@@ -68,6 +85,10 @@ public class PlayerController : MonoBehaviour
 		{
 
 			grabbed = grabbedRB;
+
+			collider.excludeLayers |= ropeMask;
+
+			handJoint.anchor = transform.worldToLocalMatrix * collision.transform.position.WithW(1);
 			handJoint.connectedBody = grabbedRB;
 			handJoint.enabled = true;
 		}
@@ -75,6 +96,7 @@ public class PlayerController : MonoBehaviour
 
 	private void UnGrab()
 	{
+		collider.excludeLayers &= ~ropeMask;
 		handJoint.connectedBody = null;
 		grabbed = null;
 		handJoint.enabled = false;

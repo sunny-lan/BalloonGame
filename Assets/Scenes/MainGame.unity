@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -398,6 +399,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce214f03c3f124489d57465b2533cb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 2131064979}
+  speed: 5
 --- !u!1001 &595559692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -453,10 +468,6 @@ PrefabInstance:
     - target: {fileID: 5280636258903440489, guid: 4e81a43ed196eb7468e8194e5d6017f1, type: 3}
       propertyPath: m_Name
       value: balloon 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6941984033059717459, guid: 4e81a43ed196eb7468e8194e5d6017f1, type: 3}
-      propertyPath: m_LinearDrag
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -606,3 +617,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2131064979 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4007413950117532825, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
+  m_PrefabInstance: {fileID: 237909016}
+  m_PrefabAsset: {fileID: 0}

@@ -86,7 +86,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5280636258903440489}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -160,9 +160,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3a69e8ca3439b4f885de6099d85595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bouyancyForce: 0.03
-  autoBalance: 0
-  autoBalanceAmt: 0.005
+  bouyancyForce: 3
+  autoBalance: 1
+  autoBalanceAmt: 10
+  balanceVelocity: 0.2
 --- !u!50 &6941984033059717459
 Rigidbody2D:
   serializedVersion: 4
@@ -175,8 +176,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.01
-  m_LinearDrag: 1000
+  m_Mass: 1
+  m_LinearDrag: 10
   m_AngularDrag: 3
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: bb9a6fd06c2daa342947c18c0d146d9f, type: 2}

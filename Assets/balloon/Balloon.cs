@@ -7,6 +7,7 @@ public class Balloon : MonoBehaviour
 	public float bouyancyForce;
 	public bool autoBalance = true;
 	public float autoBalanceAmt = 0.005f;
+	public float balanceVelocity = 0.1f;
 
 	Rigidbody2D rb;//aa
 	// Start is called before the first frame update
@@ -16,17 +17,17 @@ public class Balloon : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
 	{
 		if (autoBalance)
 		{
-			if (rb.velocity.y > 0)
+			if (rb.velocity.y > balanceVelocity)
 			{
-				bouyancyForce -= autoBalanceAmt;
+				bouyancyForce = Mathf.Max(0, bouyancyForce - autoBalanceAmt * Time.fixedDeltaTime);
 			}
-			else if(rb.velocity.y < 0) 
+			else if(rb.velocity.y < balanceVelocity) 
 			{
-				bouyancyForce += autoBalanceAmt;
+				bouyancyForce += autoBalanceAmt * Time.fixedDeltaTime;
 			}
 		}
 

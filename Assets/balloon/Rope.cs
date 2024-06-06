@@ -5,8 +5,10 @@ using System.Linq;
 
 public class Rope : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Awake()
+	private List<Transform> children;
+
+	// Start is called before the first frame update
+	void Awake()
     {
         for(int i=0;i+1<transform.childCount;i++)
         {
@@ -20,7 +22,14 @@ public class Rope : MonoBehaviour
         foreach(Transform a in transform)
         {
             lsit.Add(a);
+            a.GetComponent<RopeSegment>().oldParent = this;
         }
+        this.children = lsit;
         lsit.ForEach(x=>x.parent= null);
     }
+
+	public void OnDestroy()
+	{
+        foreach(Transform a in children)Destroy(a.gameObject);
+	}
 }

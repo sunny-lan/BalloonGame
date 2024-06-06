@@ -5,6 +5,7 @@ using UnityEngine;
 public class RopeSegment : MonoBehaviour
 {
     public GameObject connectedAbove, connectedBelow;
+    public Rope oldParent;
 
     void Start()
     {

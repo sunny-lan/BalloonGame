@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576911016486134707}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1459, y: 0.1149, z: 0}
-  m_LocalScale: {x: 0.93359715, y: 0.7983473, z: 1}
+  m_LocalPosition: {x: -0.004, y: 0.011, z: 0}
+  m_LocalScale: {x: 0.50710374, y: 0.35935, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4007413950117532825}
@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3630393327382282250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24, y: 0.15, z: 0}
+  m_LocalPosition: {x: 0.131, y: 0.159, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -141,8 +141,8 @@ Transform:
   m_GameObject: {fileID: 4788655597192741347}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4007413950117532825}
   m_RootOrder: -1
@@ -249,9 +249,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 0.5
+  m_LinearDrag: 0.1
+  m_AngularDrag: 0.3
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: f7250e99050189244ab73c4e0f651151, type: 2}
   m_IncludeLayers:
@@ -276,10 +276,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd0794d8bd03244f8eed31d59af227b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  jumpForce: 5
+  speed:
+    ground: 2
+    air: 0.5
+    grab: 2
+  jumpForce: 3
+  jumpForcePerChargeTime: 2
+  maxChargedJumpForce: 5
+  airJumpsAllowed: 2
+  balloonGrabbedVelocity: -0.3
   handHitbox: {fileID: 1738618084248528035}
   hand: {fileID: 6439078935623863223}
+  ropeMask:
+    serializedVersion: 2
+    m_Bits: 64
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 145
+  availJumps: 0
 --- !u!233 &1103080439538772762
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -337,7 +351,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0021780133, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -348,5 +362,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.49031723, y: 0.4903172}
   m_EdgeRadius: 0

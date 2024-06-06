@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Balloon : MonoBehaviour
@@ -8,10 +9,16 @@ public class Balloon : MonoBehaviour
 	public bool autoBalance = true;
 	public float autoBalanceAmt = 0.005f;
 	public float balanceVelocity = 0.1f;
+	public float grabbedVelocity = -0.2f;
 
-	Rigidbody2D rb;//aa
-	// Start is called before the first frame update
-	void Start()
+	[DoNotSerialize]
+	public bool Grabbed = false;
+
+	[Serialize] Joint2D topRopeJoint;
+
+	Rigidbody2D rb;
+
+	void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
 	}
@@ -21,11 +28,12 @@ public class Balloon : MonoBehaviour
 	{
 		if (autoBalance)
 		{
+			float balanceVelocity = !Grabbed ? this.balanceVelocity : grabbedVelocity;
 			if (rb.velocity.y > balanceVelocity)
 			{
 				bouyancyForce = Mathf.Max(0, bouyancyForce - autoBalanceAmt * Time.fixedDeltaTime);
 			}
-			else if(rb.velocity.y < balanceVelocity) 
+			else if (rb.velocity.y < balanceVelocity)
 			{
 				bouyancyForce += autoBalanceAmt * Time.fixedDeltaTime;
 			}
@@ -33,4 +41,5 @@ public class Balloon : MonoBehaviour
 
 		rb.AddForce(Vector2.up * bouyancyForce, ForceMode2D.Force);
 	}
+
 }

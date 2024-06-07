@@ -284,7 +284,8 @@ MonoBehaviour:
   jumpForce: 3
   jumpForcePerChargeTime: 2
   maxChargedJumpForce: 4
-  airJumpsAllowed: 2
+  baseJumpForce: 2
+  airJumpsAllowed: 1
   balloonGrabbedVelocity: -0.3
   handHitbox: {fileID: 1738618084248528035}
   hand: {fileID: 6439078935623863223}

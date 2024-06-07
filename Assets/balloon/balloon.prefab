@@ -100,11 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3a69e8ca3439b4f885de6099d85595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bouyancyForce: 25
+  bouyancyForce: 15
   autoBalance: 1
   autoBalanceAmt: 10
   balanceVelocity: 1
-  grabbedVelocity: -0.2
+  grabbedVelocity: 0.2
   ropeTopSegment: {fileID: 1556088368015112098}
   popMask:
     serializedVersion: 2
@@ -113,6 +113,7 @@ MonoBehaviour:
   popDuration: 0.1
   popForce: 5
   Grabbed: 0
+  balanceVelocityRange: 0.5
 --- !u!50 &6941984033059717459
 Rigidbody2D:
   serializedVersion: 4
@@ -125,9 +126,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 10
-  m_AngularDrag: 3
+  m_Mass: 0.5
+  m_LinearDrag: 5
+  m_AngularDrag: 1
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: bb9a6fd06c2daa342947c18c0d146d9f, type: 2}
   m_IncludeLayers:

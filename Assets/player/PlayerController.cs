@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
 		return rb.IsTouchingLayers(groundMask);
 	}
 
-	float jumpChargeBegin;
+	float jumpChargeBegin=-1;
 	bool bufferedJump = false;
 	public int availJumps = 0;
 
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
 		{
 			Grab();
 		}
-		if (Input.GetKeyUp(KeyCode.LeftShift))
+		if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.Space))
 		{
 			if (grabbed != null && jumpChargeBegin >= 0)
 			{
@@ -170,8 +170,8 @@ public class PlayerController : MonoBehaviour
 	}
 
 	[SerializeField] float jumpAnimTime = 0.2f;
-	
-	public float JumpForce
+
+	public float ChargedJumpForce
 	{
 		get
 		{

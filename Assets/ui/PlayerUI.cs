@@ -12,12 +12,24 @@ public class PlayerUI : MonoBehaviour
 
 	[SerializeField] AudioClip deathSound;
 
+	[SerializeField] JumpMeter jumpMeter;
+
 
 	// Update is called once per frame
 	void Update()
 	{
-		var lives = GameManager.LevelManager.Player.Lives;
+		var player = GameManager.LevelManager.Player;
+		var lives = player.Lives;
 		healthBar.Health = lives;
+		if (player.ChargedJumpForce >= 0)
+		{
+			jumpMeter.gameObject.SetActive(true);
+			jumpMeter.Amount = player.ChargedJumpForce / player.maxChargedJumpForce;
+		}
+		else
+		{
+			jumpMeter.gameObject.SetActive(false);
+		}
 
 		ap = GetComponent<AudioSource>();
 	}

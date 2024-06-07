@@ -282,7 +282,7 @@ MonoBehaviour:
     grab: 2
   jumpForce: 3
   jumpForcePerChargeTime: 2
-  maxChargedJumpForce: 5
+  maxChargedJumpForce: 4
   airJumpsAllowed: 2
   balloonGrabbedVelocity: -0.3
   handHitbox: {fileID: 1738618084248528035}
@@ -292,8 +292,10 @@ MonoBehaviour:
     m_Bits: 64
   groundMask:
     serializedVersion: 2
-    m_Bits: 145
+    m_Bits: 4241
   availJumps: 0
+  MaxHealth: 0
+  lives: 5
 --- !u!233 &1103080439538772762
 HingeJoint2D:
   m_ObjectHideFlags: 0

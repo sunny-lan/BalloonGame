@@ -33,7 +33,20 @@ public class HealthBar : MonoBehaviour
 		UpdateMaxHealth();
 		for (int i = 0; i < transform.childCount; i++)
 		{
-			transform.GetChild(i).gameObject.SetActive(i < health);
+			StartCoroutine(SetHeartAlive(transform.GetChild(i).gameObject,i < health));
+		}
+	}
+
+	IEnumerator SetHeartAlive(GameObject heart, bool show)
+	{
+		if (show)
+		{
+			heart.SetActive(true);
+		}
+		else
+		{
+			yield return heart.GetComponent<CameraShake>().Shake(0.2f, 2);
+			heart.SetActive(false);
 		}
 	}
 
@@ -41,4 +54,5 @@ public class HealthBar : MonoBehaviour
 	{
 		UpdateHealth();
 	}
+
 }

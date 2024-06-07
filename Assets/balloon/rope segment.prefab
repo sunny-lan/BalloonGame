@@ -101,8 +101,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.1
-  m_LinearDrag: 0.01
-  m_AngularDrag: 0.05
+  m_LinearDrag: 0
+  m_AngularDrag: 0.01
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 962b19c804baa03458f97ef08e8133a4, type: 2}
   m_IncludeLayers:
@@ -199,3 +199,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectedAbove: {fileID: 0}
   connectedBelow: {fileID: 0}
+  oldParent: {fileID: 0}

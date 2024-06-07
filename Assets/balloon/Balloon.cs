@@ -11,16 +11,21 @@ public class Balloon : MonoBehaviour
 	public float balanceVelocity = 0.1f;
 	public float grabbedVelocity = -0.2f;
 
-	[DoNotSerialize]
+	[SerializeField] Rigidbody2D ropeTopSegment;
+	[SerializeField] LayerMask popMask;
+	[SerializeField] Sprite pop;
+	public float popDuration = 0.1f;
+	public float popForce = 5;
 	public bool Grabbed = false;
 
-	[Serialize] Joint2D topRopeJoint;
 
 	Rigidbody2D rb;
+	private SpriteRenderer sr;
 
 	void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		sr = GetComponent<SpriteRenderer>();
 	}
 
 	// Update is called once per frame
@@ -40,6 +45,19 @@ public class Balloon : MonoBehaviour
 		}
 
 		rb.AddForce(Vector2.up * bouyancyForce, ForceMode2D.Force);
+		if (rb.IsTouchingLayers(popMask))
+		{
+			StartCoroutine(Pop());
+		}
 	}
 
+
+
+	IEnumerator Pop()
+	{
+		ropeTopSegment.AddForce(Vector2.down*popForce, ForceMode2D.Impulse);
+		sr.sprite = pop;
+		yield return new WaitForSeconds(popDuration);
+		Destroy(gameObject);
+	}
 }

@@ -48,14 +48,13 @@ public class PlayerController : MonoBehaviour
 	HingeJoint2D handJoint;
 
 	Rigidbody2D grabbed = null;
-	Balloon grabbedBalloon= null;
+	Balloon grabbedBalloon = null;
 
 	[SerializeField] LayerMask ropeMask;
 	[SerializeField] LayerMask groundMask;
 
 	void Awake()
 	{
-		GameManager.Player = this;
 
 		handJoint = GetComponent<HingeJoint2D>();
 		rb = GetComponent<Rigidbody2D>();
@@ -93,7 +92,7 @@ public class PlayerController : MonoBehaviour
 			rb.AddForce(Vector2.right * speed.Get(CurrentStatus));
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.UpArrow))
 		{
 			if (grabbed != null)
 				jumpChargeBegin = Time.time;
@@ -108,15 +107,6 @@ public class PlayerController : MonoBehaviour
 
 		}
 
-		if (Input.GetKeyUp(KeyCode.Space))
-		{
-			if (grabbed != null && jumpChargeBegin >= 0)
-			{
-				bufferedJump = true;
-
-			}
-		}
-
 
 
 		if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -125,9 +115,8 @@ public class PlayerController : MonoBehaviour
 		}
 		if (Input.GetKeyUp(KeyCode.LeftShift))
 		{
-			if (bufferedJump)
+			if (grabbed != null && jumpChargeBegin >= 0)
 			{
-				bufferedJump = false;
 				JumpFromGrab();
 			}
 			UnGrab();
@@ -151,8 +140,21 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public void SetFreeze(bool freeze)
+	{
+		if (freeze)
+		{
+			rb.constraints = RigidbodyConstraints2D.FreezeAll;
+		}
+		else
+		{
+			rb.constraints = RigidbodyConstraints2D.None;
+		}
+	}
+
 	private void Jump()
 	{
+		rb.velocity = new(rb.velocity.x, 0);
 		rb.AddForce(GetJumpDirection() * jumpForce, ForceMode2D.Impulse);
 	}
 
@@ -172,15 +174,15 @@ public class PlayerController : MonoBehaviour
 
 	private Vector2 GetJumpDirection()
 	{
-		var basis = Vector2.up;
+		var basis = Vector2.up * jumpForce;
 
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
-			basis += Vector2.left;
+			basis += Vector2.left * speed.Get(CurrentStatus);
 		}
 		if (Input.GetKey(KeyCode.RightArrow))
 		{
-			basis += Vector2.right;
+			basis += Vector2.right * speed.Get(CurrentStatus);
 		}
 
 		basis.Normalize();
@@ -254,14 +256,22 @@ public class PlayerController : MonoBehaviour
 
 	public event Action LivesChanged;
 
+
+	public bool Invuln { get; set; }
 	public void DoDamage(float damage)
 	{
+		if (Invuln) return;
 		Health -= damage;
-		if(Health < 0)
+		if (Health < 0)
 		{
 			Lives--;
 			Health = MaxHealth;
+			//lastInvuln = Time.time;
 		}
 	}
 
+	//float lastInvuln;
+
+	//[SerializeField]
+	//private float invulnTime = 3f;
 }

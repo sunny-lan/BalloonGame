@@ -17,6 +17,7 @@ public class Balloon : MonoBehaviour
 	public float popDuration = 0.1f;
 	public float popForce = 5;
 	public bool Grabbed = false;
+	public float balanceVelocityRange = 0.5f;
 
 
 	Rigidbody2D rb;
@@ -26,7 +27,9 @@ public class Balloon : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D>();
 		sr = GetComponent<SpriteRenderer>();
+		balanceVelocity += Random.value * balanceVelocityRange;
 	}
+
 
 	// Update is called once per frame
 	void FixedUpdate()
@@ -55,7 +58,7 @@ public class Balloon : MonoBehaviour
 
 	IEnumerator Pop()
 	{
-		ropeTopSegment.AddForce(Vector2.down*popForce, ForceMode2D.Impulse);
+		ropeTopSegment.AddForce(Vector2.down * popForce, ForceMode2D.Impulse);
 		sr.sprite = pop;
 		yield return new WaitForSeconds(popDuration);
 		Destroy(gameObject);

@@ -37,13 +37,20 @@ public class PlayerController : MonoBehaviour
 	public float jumpForce = 1;
 	public float jumpForcePerChargeTime = 2;
 	public float maxChargedJumpForce = 5;
+	public float baseJumpForce = 2;
 	public int airJumpsAllowed = 1;
 	public float balloonGrabbedVelocity = -0.3f;
 
 	[SerializeField] SpriteRenderer handHitbox;
 	[SerializeField] Transform hand;
+	[SerializeField] SpriteRenderer body;
+
+	[SerializeField] Sprite normalSprite;
+	[SerializeField] Sprite grabbedSprite;
+	[SerializeField] Sprite jumpingSprite;
 
 	Collider2D collider;
+	private AudioSource audioSource;
 	Rigidbody2D rb;
 	HingeJoint2D handJoint;
 
@@ -59,7 +66,7 @@ public class PlayerController : MonoBehaviour
 		handJoint = GetComponent<HingeJoint2D>();
 		rb = GetComponent<Rigidbody2D>();
 		collider = GetComponent<Collider2D>();
-
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	private void Start()
@@ -123,6 +130,8 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	[SerializeField] AudioClip jump;
+
 	public enum Status
 	{
 		Ground,
@@ -156,6 +165,31 @@ public class PlayerController : MonoBehaviour
 	{
 		rb.velocity = new(rb.velocity.x, 0);
 		rb.AddForce(GetJumpDirection() * jumpForce, ForceMode2D.Impulse);
+		audioSource.PlayOneShot(jump);
+		StartCoroutine(PlayJumpAnim());
+	}
+
+	[SerializeField] float jumpAnimTime = 0.2f;
+	
+	public float JumpForce
+	{
+		get
+		{
+			if (jumpChargeBegin < 0 || grabbed == null)
+			{
+				return -1;
+			}
+			var jumpChargeDuration = Time.time - jumpChargeBegin;
+			var jumpForce = Mathf.Min(maxChargedJumpForce, jumpChargeDuration * jumpForcePerChargeTime + baseJumpForce);
+			return jumpForce;
+		}
+	}
+
+	IEnumerator PlayJumpAnim()
+	{
+		body.sprite = jumpingSprite;
+		yield return new WaitForSeconds(jumpAnimTime);
+		body.sprite = normalSprite;
 	}
 
 	private void JumpFromGrab()
@@ -164,12 +198,13 @@ public class PlayerController : MonoBehaviour
 		if (jumpChargeBegin < 0) return;
 
 		var jumpChargeDuration = Time.time - jumpChargeBegin;
-		var jumpForce = Mathf.Min(maxChargedJumpForce, jumpChargeDuration * jumpForcePerChargeTime);
+		var jumpForce = Mathf.Min(maxChargedJumpForce, jumpChargeDuration * jumpForcePerChargeTime + baseJumpForce);
 		Vector2 basis = GetJumpDirection();
 
 		rb.AddForceAtPosition(jumpForce * basis, handHitbox.transform.position, ForceMode2D.Impulse);
 		grabbed.AddForce(-jumpForce * basis, ForceMode2D.Impulse);
 		jumpChargeBegin = -1;
+
 	}
 
 	private Vector2 GetJumpDirection()
@@ -226,6 +261,7 @@ public class PlayerController : MonoBehaviour
 			handJoint.anchor = transform.worldToLocalMatrix * collision.transform.position.WithW(1);
 			handJoint.connectedBody = grabbedRB;
 			handJoint.enabled = true;
+			body.sprite = grabbedSprite;
 		}
 	}
 
@@ -239,6 +275,7 @@ public class PlayerController : MonoBehaviour
 		grabbed = null;
 		handJoint.enabled = false;
 		grabbedBalloon = null;
+		body.sprite = normalSprite;
 	}
 
 	[SerializeField] float MaxHealth;

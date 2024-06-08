@@ -12,4 +12,9 @@ public class Rotate : MonoBehaviour
 	{
 		transform.localRotation *= Quaternion.Euler(0, 0, rotationSpeed * Time.deltaTime * Mathf.PI * 2);
 	}
+
+	public void SetSpeed(float s)
+	{
+		rotationSpeed = s;	
+	}
 }

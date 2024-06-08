@@ -10,6 +10,7 @@ public class ZoomToPlayer : BulletHellObj
 	public float moveTime = 0.5f;
 
 	[SerializeField] Transform target;
+	[SerializeField] AnimationCurve curve;
 
 	protected override void Start()
 	{
@@ -20,19 +21,26 @@ public class ZoomToPlayer : BulletHellObj
 
 	public override IEnumerator Fire()
 	{
-		var destPos = GameManager.LevelManager.Player.transform.position;
 		var originPos = target.position;
+		yield return new WaitForSeconds(Mathf.Min(trackingPeriod, initialWaitTime));
 
-		yield return new WaitForSeconds(initialWaitTime);
+		var destPos = GameManager.LevelManager.Player.transform.position;
+
+		yield return new WaitForSeconds(initialWaitTime - Mathf.Min(trackingPeriod, initialWaitTime));
+
 		for (float t = 0; t <= moveTime; t += Time.deltaTime)
 		{
 			var animProg = t / moveTime;
-			if (animProg < trackingPeriod)
+			var pp = GameManager.LevelManager.Player.transform.position;
+
+			if (t + initialWaitTime < trackingPeriod)
 			{
-				destPos = GameManager.LevelManager.Player.transform.position;
+				destPos = pp;
 			}
 
-			target.position = Vector3.Lerp(originPos, destPos, animProg);
+			var trueDestPos = (destPos - originPos).normalized * ((pp-originPos).magnitude +0.3f) + originPos;
+
+			target.position = Vector3.Lerp(originPos, trueDestPos, curve.Evaluate(animProg));
 
 			yield return null;
 		}//

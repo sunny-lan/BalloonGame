@@ -22,18 +22,24 @@ public class PlaylistSpawner : BulletHellObj
 		if(randomizeOrder)
 			ordering.Shuffle();
 
+		List<Coroutine> wait = null;
+		if(simultaneous)wait = new ();
+
 		for(int i=0;i<children.Length;i++)
 		{
 			var child = children[ordering[i]];
 			if (simultaneous)
 			{
-				StartCoroutine(child.Fire());
+				wait.Add(StartCoroutine(child.Fire()));
 			}
 			else
 			{
 				yield return child.Fire();
 			}
 		}
+
+		if(wait!=null)
+		foreach (var child in wait) yield return child;
 	}
 
 }

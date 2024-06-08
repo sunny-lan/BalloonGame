@@ -24,6 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4919274368265824772}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,7 +33,6 @@ Transform:
   - {fileID: 7778736441415125936}
   - {fileID: 8262109380429699252}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2728042583291379670
 MonoBehaviour:
@@ -52,8 +52,11 @@ MonoBehaviour:
   vertical: {fileID: 5411539653486552234}
   waitBeforeRotate: 0.6
   rotationTime: 1
-  totalRotAngle: 30
+  startRotAngle: 20
+  endRotAngle: 35
   waitAfterRotate: 0.5
+  intervalBetweenIterations: 1
+  numIterations: 5
   rotationCurve:
     serializedVersion: 2
     m_Curve:

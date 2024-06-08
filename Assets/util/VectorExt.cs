@@ -12,4 +12,8 @@ public static class VectorExt
 	{
 		return new (v.x, v.y, z);
 	}
+	public static Vector2 XY(this Vector3 v)
+	{
+		return new(v.x, v.y);
+	}
 }

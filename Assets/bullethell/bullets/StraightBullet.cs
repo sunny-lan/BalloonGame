@@ -8,7 +8,7 @@ public class StraightBullet : BulletHellObj
 
 	public override IEnumerator Fire()
 	{
-		yield return null;
+		yield break;
 	}
 
 	// Update is called once per frame

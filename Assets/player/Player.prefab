@@ -303,7 +303,7 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: c15a7c9bd91f7ab4b965d80f5c8b898a, type: 3}
   jumpAnimTime: 0.05
   MaxHealth: 0
-  lives: 5
+  lives: 10
 --- !u!233 &1103080439538772762
 HingeJoint2D:
   m_ObjectHideFlags: 0

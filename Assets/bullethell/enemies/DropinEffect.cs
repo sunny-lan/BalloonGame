@@ -14,17 +14,23 @@ public class DropinEffect : BulletHellObj
 	public float impactAmt = 0.2f;
 	public float waitAfter = 0.2f;
 
+	public bool dropOut = false;
+
 	protected override void Start()
 	{
 		base.Start();
+		if(!dropOut) 
 		targetSpriteRenderer.gameObject.SetActive(false);
 	}
 
 	public override IEnumerator Fire()
 	{
 
-		targetSpriteRenderer.color = new(1, 1, 1, 0);
-		targetSpriteRenderer.gameObject.SetActive(true);
+		targetSpriteRenderer.color = new(1, 1, 1, alpha.Evaluate(0));
+		targetSpriteRenderer.transform.position = targetPos.position + dropInY.Evaluate(0) * Vector3.up;
+
+		if (!dropOut)
+			targetSpriteRenderer.gameObject.SetActive(true);
 		for (float t = 0; t <= dropInTime; t += Time.deltaTime)
 		{
 			var animProg = t / dropInTime;
@@ -35,11 +41,11 @@ public class DropinEffect : BulletHellObj
 			yield return new WaitForEndOfFrame();
 		}
 
-		targetSpriteRenderer.color = new(1, 1, 1, 1);
-		targetSpriteRenderer.transform.position = targetPos.position;
-
+		if(impactAmt>0)
 		StartCoroutine(GameManager.LevelManager.CameraShake.Shake(impactDuration, impactAmt));
 		yield return new WaitForSeconds(waitAfter);
+		if (dropOut)
+			targetSpriteRenderer.gameObject.SetActive(false);
 	}
 
 }

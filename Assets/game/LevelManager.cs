@@ -17,6 +17,11 @@ public class LevelManager : MonoBehaviour
 		GameManager.LevelManager = this;
 	}
 
+	private void Start()
+	{
+		Respawn();
+	}
+
 
 	private void Respawn()
 	{

@@ -56,7 +56,7 @@ public class ScreenEdgeTracking : BulletHellObj
 			var pos = movement * movementAxis + axis * offset + Vector2.Scale(line.start, axis);
 			child.transform.position = pos;
 
-			yield return new WaitForEndOfFrame();
+			yield return null;
 		}
 	}
 
@@ -99,17 +99,6 @@ public class ScreenEdgeTracking : BulletHellObj
 
 	private ScreenSide RandomlySelectSide()
 	{
-		float total = probability.Values.Sum();
-		float rng = UnityEngine.Random.Range(0, total);
-		foreach (var (side, prob) in probability)
-		{
-			rng -= prob;
-			if (rng < 0)
-			{
-				return side;
-			}
-		}
-
-		throw new System.Exception("This shouldn't happen");
+		return probability.SelectByProbability();
 	}
 }

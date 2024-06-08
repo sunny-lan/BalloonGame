@@ -12,7 +12,7 @@ public class CameraShake : MonoBehaviour
         {
             transform.localPosition = originalPos + (amount * Random.insideUnitCircle).WithZ(0);
 
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
         transform.localPosition = originalPos;
     }

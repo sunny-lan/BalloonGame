@@ -17,16 +17,18 @@ public class BGMManager : MonoBehaviour
 
 	private void Awake()
 	{
-		if (GameManager.BGMManager != null) Destroy(gameObject);
+		if (GameManager.BGMManager != null) { Destroy(gameObject); return; }
 		GameManager.BGMManager = this;
+		DontDestroyOnLoad(gameObject);
 	}
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		DontDestroyOnLoad(gameObject);
+		if (GameManager.BGMManager != this) return;
 		lowPassFilter = GetComponent<AudioLowPassFilter>();
 		audioSource = GetComponent<AudioSource>();
+		audioSource.Play();
 	}
 
 	public IEnumerator SetMuffle(bool muffle)

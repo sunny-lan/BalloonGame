@@ -38,7 +38,7 @@ public class DropinEffect : BulletHellObj
 			targetSpriteRenderer.color = new(1, 1, 1, alpha.Evaluate(animProg));
 			targetSpriteRenderer.transform.position = targetPos.position + dropInY.Evaluate(animProg) * Vector3.up;
 
-			yield return new WaitForEndOfFrame();
+			yield return null;
 		}
 
 		if(impactAmt>0)

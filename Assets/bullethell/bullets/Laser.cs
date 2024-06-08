@@ -64,7 +64,7 @@ public class Laser : BulletHellObj
 			bodySR.color = new(1, 1, 1, previewBodyAlpha.Evaluate(animProgress));
 			
 
-			yield return new WaitForEndOfFrame();
+			yield return null;
 		}
 		preview.transform.localScale = new(1, 1, 1);
 		baseSR.color = previewSR.color = new Color(1, 0, 0,1);
@@ -90,7 +90,7 @@ public class Laser : BulletHellObj
 				}
 			}
 
-			yield return new WaitForEndOfFrame();
+			yield return null;
 		}
 
 		Firing = false;

@@ -17,15 +17,16 @@ public class IntervalSpawner : BulletHellObj
 		var wait = new List<Coroutine>();
 		for (int i = 0; i < waves || waves == -1; i++)
 		{
-			if (simultaneous)
-			{
-				var c = StartCoroutine(child.Fire());
-				wait.Add(c);
-			}
-			else
-			{
-				yield return child.Fire();
-			}
+			if (child != null)
+				if (simultaneous)
+				{
+					var c = StartCoroutine(child.Fire());
+					wait.Add(c);
+				}
+				else
+				{
+					yield return child.Fire();
+				}
 
 			yield return new WaitForSeconds(interval);
 		}

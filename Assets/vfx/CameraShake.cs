@@ -7,13 +7,14 @@ public class CameraShake : MonoBehaviour
 
 	public IEnumerator Shake(float duration, float amount)
     {
-        var originalPos = transform.position;
+        var originalPos = transform.localPosition;
         for(float t = 0; t < duration; t += Time.deltaTime)
         {
-            transform.position = originalPos + (amount * Random.insideUnitCircle).WithZ(0);
+            transform.localPosition = originalPos + (amount * Random.insideUnitCircle).WithZ(0);
 
             yield return new WaitForEndOfFrame();
         }
-        transform.position = originalPos;
+        transform.localPosition = originalPos;
     }
+
 }

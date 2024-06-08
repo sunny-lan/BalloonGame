@@ -125,7 +125,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4375848192698117104}
   - component: {fileID: 6564637563796522636}
-  - component: {fileID: 8172551908295975633}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -200,18 +199,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8172551908295975633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4788655597192741347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5073485fcdbb32f4aa7b300cc0fd3b18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6807012022393315714
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +213,7 @@ GameObject:
   - component: {fileID: 1103080439538772762}
   - component: {fileID: 2836872248818637572}
   - component: {fileID: 5295499388124091421}
+  - component: {fileID: 4193695982179256127}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -306,7 +294,7 @@ MonoBehaviour:
   normalSprite: {fileID: -1530729660, guid: 00a5818b6cb9ba743b04e3680c6c7b9c, type: 3}
   grabbedSprite: {fileID: -1530729660, guid: 00a5818b6cb9ba743b04e3680c6c7b9c, type: 3}
   jumpingSprite: {fileID: 1684272481, guid: 00a5818b6cb9ba743b04e3680c6c7b9c, type: 3}
-  shake: {fileID: 8172551908295975633}
+  shake: {fileID: 4193695982179256127}
   ropeMask:
     serializedVersion: 2
     m_Bits: 64
@@ -486,3 +474,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4193695982179256127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6807012022393315714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5073485fcdbb32f4aa7b300cc0fd3b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

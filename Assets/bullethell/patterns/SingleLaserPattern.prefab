@@ -88,7 +88,7 @@ Transform:
   m_Children:
   - {fileID: 2491909365007591478}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1572106900431843765
 MonoBehaviour:
@@ -103,11 +103,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   children: []
-  fireOnStart: 1
-  initialDelay: 1
-  interval: 3
+  fireOnStart: 0
+  initialDelay: 0
+  interval: 2.5
   simultaneous: 0
-  waves: -1
+  waves: 8
 --- !u!1 &8818127762248351799
 GameObject:
   m_ObjectHideFlags: 0

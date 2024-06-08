@@ -17,7 +17,7 @@ public class RotationalBulletSpawner : BulletHellObj
 		for (float theta = startAngle; theta <= endAngle; theta += interval)
 		{
 			var thetaRad = Mathf.Deg2Rad * theta;
-			child.transform.position = new Vector3(Mathf.Cos(thetaRad), Mathf.Sin(thetaRad), 0) * startDistance;
+			child.transform.localPosition = new Vector3(Mathf.Cos(thetaRad), Mathf.Sin(thetaRad), 0) * startDistance;
 			child.transform.localEulerAngles = new(0, 0, theta);
 
 			if (simultaneous)

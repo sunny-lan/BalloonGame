@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
 
 	private void Start()
 	{
+		StartCoroutine(GameManager.BGMManager.SetMuffle(false));
 		Respawn();
 	}
 

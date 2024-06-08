@@ -8,6 +8,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject tutorial;
 	[SerializeField] GameObject credits;
 
+	private void Start()
+	{
+        StartCoroutine(GameManager.BGMManager.SetMuffle(true));
+	}
+
 	public void Play()
     {
         SceneManager.LoadScene("MainGame");

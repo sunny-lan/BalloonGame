@@ -4,15 +4,51 @@ using UnityEngine;
 
 public class BGMManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	private AudioLowPassFilter lowPassFilter;
+	private AudioSource audioSource;
+	public float muffleTime = 0.5f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public float muffleAmt = 2700;
+	public float unmuffleAmt = 22000;
+
+	public float muffleVol = 0.7f;
+	public float unmuffleVol = 1f;
+
+
+	private void Awake()
+	{
+		if (GameManager.BGMManager != null) Destroy(gameObject);
+		GameManager.BGMManager = this;
+	}
+
+	// Start is called before the first frame update
+	void Start()
+	{
+		DontDestroyOnLoad(gameObject);
+		lowPassFilter = GetComponent<AudioLowPassFilter>();
+		audioSource = GetComponent<AudioSource>();
+	}
+
+	public IEnumerator SetMuffle(bool muffle)
+	{
+		var curCutoff = lowPassFilter.cutoffFrequency;
+		var curVol = audioSource.volume;
+		for (float t = 0; t <= muffleTime; t += Time.deltaTime)
+		{
+			float prog = t / muffleTime;
+
+			if (muffle)
+			{
+				lowPassFilter.cutoffFrequency = Mathf.Lerp(curCutoff, muffleAmt, prog);
+				audioSource.volume = Mathf.Lerp(curVol, muffleVol, prog);
+			}
+			else
+			{
+				lowPassFilter.cutoffFrequency = Mathf.Lerp(curCutoff, unmuffleAmt, prog);
+				audioSource.volume = Mathf.Lerp(curVol, unmuffleVol, prog);
+			}
+
+			yield return null;
+		}
+	}
 }

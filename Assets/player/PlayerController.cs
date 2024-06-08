@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
 	Collider2D collider;
 	private AudioSource audioSource;
+	[SerializeField] private CameraShake shake;
 	Rigidbody2D rb;
 	HingeJoint2D handJoint;
 
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
 		return rb.IsTouchingLayers(groundMask);
 	}
 
-	float jumpChargeBegin=-1;
+	float jumpChargeBegin = -1;
 	bool bufferedJump = false;
 	public int availJumps = 0;
 
@@ -293,7 +294,8 @@ public class PlayerController : MonoBehaviour
 
 	public event Action LivesChanged;
 
-
+	public float deathShakeDuration = 0.2f;
+	public float deathShakeAmt = 0.1f;
 	public bool Invuln { get; set; }
 	public void DoDamage(float damage)
 	{
@@ -303,6 +305,7 @@ public class PlayerController : MonoBehaviour
 		{
 			Lives--;
 			Health = MaxHealth;
+			StartCoroutine(shake.Shake(deathShakeDuration, deathShakeAmt));
 			//lastInvuln = Time.time;
 		}
 	}

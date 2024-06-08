@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.90746444, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.90746444, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -125,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4375848192698117104}
   - component: {fileID: 6564637563796522636}
+  - component: {fileID: 8172551908295975633}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -199,6 +200,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8172551908295975633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788655597192741347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5073485fcdbb32f4aa7b300cc0fd3b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6807012022393315714
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +306,7 @@ MonoBehaviour:
   normalSprite: {fileID: -1530729660, guid: 00a5818b6cb9ba743b04e3680c6c7b9c, type: 3}
   grabbedSprite: {fileID: -1530729660, guid: 00a5818b6cb9ba743b04e3680c6c7b9c, type: 3}
   jumpingSprite: {fileID: 1684272481, guid: 00a5818b6cb9ba743b04e3680c6c7b9c, type: 3}
+  shake: {fileID: 8172551908295975633}
   ropeMask:
     serializedVersion: 2
     m_Bits: 64
@@ -304,6 +318,8 @@ MonoBehaviour:
   jumpAnimTime: 0.05
   MaxHealth: 0
   lives: 10
+  deathShakeDuration: 0.2
+  deathShakeAmt: 0.3
 --- !u!233 &1103080439538772762
 HingeJoint2D:
   m_ObjectHideFlags: 0

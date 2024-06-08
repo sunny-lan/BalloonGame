@@ -8,6 +8,7 @@ public class Laser : BulletHellObj
 	[SerializeField] GameObject preview;
 	[SerializeField] SpriteRenderer previewSR;
 	[SerializeField] SpriteRenderer bodySR;
+	[SerializeField] SpriteRenderer baseSR;
 
 	[SerializeField] AudioClip laserLeadup;
 	[SerializeField] AudioClip laserFire;
@@ -39,6 +40,7 @@ public class Laser : BulletHellObj
 		base.Start();
 		body.SetActive(false);
 		preview.SetActive(false);
+		baseSR.gameObject.SetActive(false);	
 	}
 
 
@@ -49,6 +51,7 @@ public class Laser : BulletHellObj
 		body.SetActive(true);
 		preview.transform.localScale = new(0, 0, 1);
 		preview.SetActive(true);
+		baseSR.gameObject.SetActive(true);
 		audioSrc.PlayOneShot(laserLeadup);
 		
 		for (float t = 0; t <= PreviewAnimTime; t += Time.deltaTime)
@@ -57,13 +60,14 @@ public class Laser : BulletHellObj
 			preview.transform.localScale = new(
 				previewXScaling.Evaluate(animProgress),
 				previewYScaling.Evaluate(animProgress),1);
-			previewSR.color = new Color(1,0,0,previewAlpha.Evaluate(animProgress));
+			baseSR.color= previewSR.color = new Color(1,0,0,previewAlpha.Evaluate(animProgress));
 			bodySR.color = new(1, 1, 1, previewBodyAlpha.Evaluate(animProgress));
+			
 
 			yield return new WaitForEndOfFrame();
 		}
 		preview.transform.localScale = new(1, 1, 1);
-		previewSR.color = new Color(1, 0, 0,1);
+		baseSR.color = previewSR.color = new Color(1, 0, 0,1);
 
 		yield return new WaitForSeconds(PreviewFullTime);
 
@@ -91,5 +95,6 @@ public class Laser : BulletHellObj
 
 		Firing = false;
 		body.SetActive(false);
+		baseSR.gameObject.SetActive(false);
 	}
 }

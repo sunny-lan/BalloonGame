@@ -14,5 +14,6 @@ public class CameraShake : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
+        transform.position = originalPos;
     }
 }

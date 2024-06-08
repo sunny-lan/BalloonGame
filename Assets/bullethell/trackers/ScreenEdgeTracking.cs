@@ -30,7 +30,7 @@ public class ScreenEdgeTracking : BulletHellObj
 
 	public override IEnumerator Fire()
 	{
-		var screenSide = ScreenSide.Top;
+		var screenSide = RandomlySelectSide();
 		var axis = GetAxis(screenSide);
 		var movementAxis = GetMovementAxis(screenSide);
 		float rng = Random.value;

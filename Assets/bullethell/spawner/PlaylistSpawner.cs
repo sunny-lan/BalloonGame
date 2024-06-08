@@ -20,7 +20,7 @@ public class PlaylistSpawner : BulletHellObj
 	public override IEnumerator Fire()
 	{
 		if(randomizeOrder)
-			rng.Shuffle(ordering);
+			ordering.Shuffle();
 
 		for(int i=0;i<children.Length;i++)
 		{

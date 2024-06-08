@@ -1013,6 +1013,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5032347769721205750, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6807012022393315714, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1981,6 +1985,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 557718199}
     m_Modifications:
+    - target: {fileID: 2728042583291379670, guid: df59fdf1160e7a74593512a858620d75, type: 3}
+      propertyPath: numIterations
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2921151295005739210, guid: df59fdf1160e7a74593512a858620d75, type: 3}
       propertyPath: m_RootOrder
       value: 0

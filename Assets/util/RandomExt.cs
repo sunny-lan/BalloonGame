@@ -1,14 +1,14 @@
-using System;
+
 using System.Linq;
 
 static class RandomExtensions
 {
-	public static void Shuffle<T>(this Random rng, T[] array)
+	public static void Shuffle<T>(this T[] array)
 	{
 		int n = array.Length;
 		while (n > 1)
 		{
-			int k = rng.Next(n--);
+			int k = UnityEngine.Random.Range(0, n--);
 			T temp = array[n];
 			array[n] = array[k];
 			array[k] = temp;

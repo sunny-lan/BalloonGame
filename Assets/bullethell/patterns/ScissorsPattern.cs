@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,10 @@ public class ScissorsPattern : BulletHellObj
 
 	public float waitBeforeRotate = 1f;
 	public float rotationTime = 2f;
-	public float totalRotAngle = 90;
+	public float startRotAngle = 20, endRotAngle = 35;
 	public float waitAfterRotate = 1f;
+	public float intervalBetweenIterations = 1f;
+	public int numIterations = 5;
 
 	[SerializeField] AnimationCurve rotationCurve;
 
@@ -29,23 +32,37 @@ public class ScissorsPattern : BulletHellObj
 
 	public bool alternate = true;
 
-	Vector3 direction;
 
 	protected override void Start()
 	{
 		base.Start();
 		horizontal.gameObject.SetActive(false);
 		vertical.gameObject.SetActive(false);
+	}
 
-		direction = rotDirectionProbability.SelectByProbability() switch
+
+
+	public override IEnumerator Fire()
+	{
+
+		var direction = rotDirectionProbability.SelectByProbability() switch
 		{
 			Dir.Clockwise => Vector3.forward,
 			Dir.CounterClockwise => Vector3.back,
 			_ => throw new System.NotImplementedException(),
 		};
+
+		for (int iteration = 0; iteration < numIterations; iteration++)
+		{
+			var totalRotAngle = Mathf.Lerp(startRotAngle, endRotAngle, iteration / (numIterations - 1));
+
+			yield return FireSingle(totalRotAngle, direction);
+			yield return new WaitForSeconds(waitAfterRotate);
+			if (alternate) direction = -direction;
+		}
 	}
 
-	public override IEnumerator Fire()
+	private IEnumerator FireSingle(float totalRotAngle, Vector3 direction)
 	{
 		var playerPos = GameManager.LevelManager.Player.transform.position;
 		horizontal.transform.position = new(playerPos.x - 50, playerPos.y, 0);
@@ -84,7 +101,5 @@ public class ScissorsPattern : BulletHellObj
 
 		horizontal.gameObject.SetActive(false);
 		vertical.gameObject.SetActive(false);
-		if (alternate) direction = -direction;
 	}
-
 }

@@ -9,6 +9,9 @@ public class Spawner : MonoBehaviour
 	[SerializeField] Rect spawnArea;
 
 	public float rate = 2;//object per second
+	public float density = 2; //object per meter
+	public float individualVariation = 0.1f;
+	public float baseVariation = 0.3f;
 
 	// Start is called before the first frame update
 	void Start()
@@ -33,22 +36,32 @@ public class Spawner : MonoBehaviour
 		Gizmos.DrawWireCube(
 			 new Vector4(rect.center.x, rect.center.y, 0.01f, 1), new Vector3(rect.size.x, rect.size.y, 0.01f));
 	}
+	
+	
 
 	// Update is called once per frame
 	IEnumerator Run()
 	{
+		float[] ordering = Enumerable.Range(0, (int)Mathf.Floor(spawnArea.width * density))
+			.Select(x=>x/density)
+			.ToArray();
+
 		while (true)
 		{
-			var delay = Mathf.Log(1 - Mathf.Min(0.99f, Random.value)) / (-rate);
-			yield return new WaitForSeconds(delay);
-			Spawn();
+			ordering.Shuffle();
+
+			var baseOffset = Random.value * baseVariation;
+			foreach (var x in ordering)
+			{
+				yield return new WaitForSeconds(1 / rate);
+				Spawn(x + baseOffset + Random.value * individualVariation);
+			}
 		}
 	}
 
-	private void Spawn()
+	private void Spawn(float x)
 	{
 		int idx = Random.Range(0, objectsToSpawn.Length);	
-		float x = Random.Range(spawnArea.xMin, spawnArea.xMax);
 		float y = Random.Range(spawnArea.yMin, spawnArea.yMax);
 
 		var obj = Instantiate(objectsToSpawn[idx], transform.localToWorldMatrix * new Vector4(x, y, 0, 1), Quaternion.identity);

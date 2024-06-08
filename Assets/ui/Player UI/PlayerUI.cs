@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -15,11 +16,23 @@ public class PlayerUI : MonoBehaviour
 	[SerializeField] JumpMeter jumpMeter;
 	[SerializeField] RectTransform canvas;
 
+	[SerializeField] RectTransform loseScreen;
+
 	public void GetWorldCorners(Vector3[] worldSpaceArray)
 	{
 		 canvas.GetWorldCorners(worldSpaceArray);
 	}
 
+	public void ShowLoseScreen()
+	{
+		loseScreen.gameObject.SetActive(true);
+	}
+
+	public void ReturnMainMenu()
+	{
+		SceneManager.LoadScene("MainMenu");
+		Time.timeScale = 1;
+	}
 
 	// Update is called once per frame
 	void Update()

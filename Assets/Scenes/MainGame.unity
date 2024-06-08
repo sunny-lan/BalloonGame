@@ -2184,21 +2184,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 557718199}
     m_Modifications:
-    - target: {fileID: 1162073744476070665, guid: 9c3208d880e96c845a8a0881bace420f, type: 3}
-      propertyPath: dropInTime
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2836683364293886802, guid: 9c3208d880e96c845a8a0881bace420f, type: 3}
       propertyPath: dropInTime
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2836683364293886802, guid: 9c3208d880e96c845a8a0881bace420f, type: 3}
-      propertyPath: dropInY.m_Curve.Array.data[0].time
-      value: -0.004164459
-      objectReference: {fileID: 0}
-    - target: {fileID: 2836683364293886802, guid: 9c3208d880e96c845a8a0881bace420f, type: 3}
-      propertyPath: dropInY.m_Curve.Array.data[0].value
-      value: 0.90275013
       objectReference: {fileID: 0}
     - target: {fileID: 4237963101248758471, guid: 9c3208d880e96c845a8a0881bace420f, type: 3}
       propertyPath: m_Name

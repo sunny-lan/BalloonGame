@@ -54,10 +54,23 @@ public class LevelManager : MonoBehaviour
 		lastLives = lives;
 	}
 
+	private void Lost()
+	{
+		Stopped=true;
+		PlayerUI.ShowLoseScreen();
+		Time.timeScale = 0;
+	}
+
 	private IEnumerator OnPlayerLostLife()
 	{
+		var lives = GameManager.LevelManager.Player.Lives;
 		StopGameLogic();
 		yield return PlayerUI.PlayerLostLifeAnimation();
+		if (lives == 0)
+		{
+			Lost();
+			yield break;
+		}
 		Respawn();
 		ReturnGameLogic();
 	}

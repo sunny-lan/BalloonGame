@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaylistSpawner : MonoBehaviour
+public class PlaylistSpawner : BulletHellObj
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public bool simultaneous = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public override IEnumerator Fire()
+	{
+		foreach(var child in children)
+		{
+			if (simultaneous)
+			{
+				StartCoroutine(child.Fire());
+			}
+			else
+			{
+				yield return child.Fire();
+			}
+		}
+	}
+
 }

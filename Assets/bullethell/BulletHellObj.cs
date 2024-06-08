@@ -13,7 +13,7 @@ public abstract class BulletHellObj : MonoBehaviour
 	protected virtual void Awake()
 	{
 		if (children == null || children.Length==0)
-			children = (transform).Cast<Transform>().Select(x => x.GetComponent<BulletHellObj>()).ToArray();
+			children = (transform).Cast<Transform>().SelectMany(x => x.GetComponents<BulletHellObj>()).ToArray();
 	}
 
 	protected virtual void Start()

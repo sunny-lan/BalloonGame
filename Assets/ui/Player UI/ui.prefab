@@ -70,7 +70,9 @@ MonoBehaviour:
 
     https://www.freepik.com/premium-vector/wasd-direction-gaming-keys-keyboard-vector-icon-template_22678984.htm
 
-    https://sfbgames.itch.io/chiptone'
+    https://sfbgames.itch.io/chiptone
+
+    https://github.com/upscalebaby/generic-serializable-dictionary/tree/master'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -364,6 +366,7 @@ MonoBehaviour:
   lifeLostShakeAmt: 0.1
   deathSound: {fileID: 8300000, guid: 04d439d48ad9af1449675980a799a957, type: 3}
   jumpMeter: {fileID: 8826332426206080042}
+  canvas: {fileID: 2829803669431102324}
 --- !u!82 &3717070944549346993
 AudioSource:
   m_ObjectHideFlags: 0

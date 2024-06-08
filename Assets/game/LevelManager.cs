@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
 	public PlayerController Player;
 	public CameraShake CameraShake;
 	public PlayerUI PlayerUI;
+	public Camera Camera;
 
 	[SerializeField] RespawnPlatform respawnPlatform;
 

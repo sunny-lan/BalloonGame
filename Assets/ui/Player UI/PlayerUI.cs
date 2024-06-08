@@ -13,6 +13,12 @@ public class PlayerUI : MonoBehaviour
 	[SerializeField] AudioClip deathSound;
 
 	[SerializeField] JumpMeter jumpMeter;
+	[SerializeField] RectTransform canvas;
+
+	public void GetWorldCorners(Vector3[] worldSpaceArray)
+	{
+		 canvas.GetWorldCorners(worldSpaceArray);
+	}
 
 
 	// Update is called once per frame

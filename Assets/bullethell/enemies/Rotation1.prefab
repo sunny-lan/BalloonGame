@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   children: []
   fireOnStart: 0
-  initialDelay: 1
+  initialDelay: 0
   interval: 0.1
   simultaneous: 1
   waves: 1

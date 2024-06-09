@@ -8,9 +8,12 @@ public class PlaylistSpawner : BulletHellObj
 	public bool simultaneous = false;
 	public bool randomizeOrder = false;
 	public bool waitForChildren = true;
+	public float delayBetween = 0;
 
 	static System.Random rng = new ();
 	int[] ordering;
+
+	public int currentIndex { get;private set; }
 
 	protected override void Start()
 	{
@@ -28,6 +31,7 @@ public class PlaylistSpawner : BulletHellObj
 
 		for(int i=0;i<children.Length;i++)
 		{
+			currentIndex = i;
 			var child = children[ordering[i]];
 			if (simultaneous)
 			{
@@ -37,6 +41,8 @@ public class PlaylistSpawner : BulletHellObj
 			{
 				yield return child.Fire();
 			}
+
+			yield return new WaitForSeconds(delayBetween);
 		}
 
 		if(wait!=null)

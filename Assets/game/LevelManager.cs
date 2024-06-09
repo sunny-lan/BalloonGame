@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
 	public CameraShake CameraShake;
 	public PlayerUI PlayerUI;
 	public Camera Camera;
+	public PlaylistSpawner Level;
 
 	[SerializeField] RespawnPlatform respawnPlatform;
 

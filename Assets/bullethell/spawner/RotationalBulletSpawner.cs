@@ -10,12 +10,14 @@ public class RotationalBulletSpawner : BulletHellObj
 	public float delayBetween = 0;
 	public bool simultaneous = true;
 	public float startDistance = 0.2f;
+	public bool reverse = false;
 
 	public override IEnumerator Fire()
 	{
 		var lst = new List<Coroutine>();
-		for (float theta = startAngle; theta <= endAngle; theta += interval)
+		for (float _theta = startAngle; _theta <= endAngle; _theta += interval)
 		{
+			var theta = reverse ? -_theta : _theta;
 			var thetaRad = Mathf.Deg2Rad * theta;
 			child.transform.localPosition = new Vector3(Mathf.Cos(thetaRad), Mathf.Sin(thetaRad), 0) * startDistance;
 			child.transform.localEulerAngles = new(0, 0, theta);

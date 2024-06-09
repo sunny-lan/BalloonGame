@@ -34,6 +34,7 @@ public class LevelManager : MonoBehaviour
 	private void StopGameLogic()
 	{
 		Player.Invuln = true;
+		Player.UnGrab();
 		Player.SetFreeze(true);
 		Stopped=true;
 	}

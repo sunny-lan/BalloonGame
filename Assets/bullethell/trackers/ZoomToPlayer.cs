@@ -19,6 +19,8 @@ public class ZoomToPlayer : BulletHellObj
 			target ??= transform.GetChild(0);
 	}
 
+	public float lineOffset = 0.3f;
+
 	public override IEnumerator Fire()
 	{
 		var originPos = target.position;
@@ -38,7 +40,7 @@ public class ZoomToPlayer : BulletHellObj
 				destPos = pp;
 			}
 
-			var trueDestPos = (destPos - originPos).normalized * ((pp-originPos).magnitude +0.3f) + originPos;
+			var trueDestPos = (destPos - originPos).normalized * Mathf.Max(0, (pp-originPos).magnitude + lineOffset) + originPos;
 
 			target.position = Vector3.Lerp(originPos, trueDestPos, curve.Evaluate(animProg));
 

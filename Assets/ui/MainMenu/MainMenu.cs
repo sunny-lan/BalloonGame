@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,17 @@ public class MainMenu : MonoBehaviour
 
 	private void Start()
 	{
-        StartCoroutine(GameManager.BGMManager.SetMuffle(true));
+        StartCoroutine(playBGM()
+        );
+	}
+
+	private IEnumerator playBGM()
+	{
+		{
+			yield return null;
+			yield return GameManager.BGMManager.SetMuffle(true);
+
+		}
 	}
 
 	public void Play()

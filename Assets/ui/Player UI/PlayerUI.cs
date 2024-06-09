@@ -25,6 +25,7 @@ public class PlayerUI : MonoBehaviour
 
 	public void ShowLoseScreen()
 	{
+		StartCoroutine(GameManager.BGMManager.SetMuffle(true));
 		loseScreen.gameObject.SetActive(true);
 	}
 

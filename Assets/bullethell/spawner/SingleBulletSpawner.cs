@@ -20,12 +20,14 @@ public class SingleBulletSpawner : BulletHellObj
 		var bho = Instantiate(child, transform.position, transform.rotation);
 		bho.gameObject.SetActive(true);
 
+		yield return null;
+
 		IEnumerator fire()
 		{
 			yield return bho.Fire();
 			if (destroyOnFinish)
 			{
-				Destroy(bho);
+				Destroy(bho.gameObject);
 			}
 		}
 

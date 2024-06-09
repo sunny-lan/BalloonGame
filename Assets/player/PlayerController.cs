@@ -266,7 +266,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private void UnGrab()
+	public void UnGrab()
 	{
 		if (grabbed == null) return;
 

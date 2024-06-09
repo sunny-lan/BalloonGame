@@ -7,6 +7,7 @@ public class PlaylistSpawner : BulletHellObj
 {
 	public bool simultaneous = false;
 	public bool randomizeOrder = false;
+	public bool waitForChildren = true;
 
 	static System.Random rng = new ();
 	int[] ordering;
@@ -23,7 +24,7 @@ public class PlaylistSpawner : BulletHellObj
 			ordering.Shuffle();
 
 		List<Coroutine> wait = null;
-		if(simultaneous)wait = new ();
+		if(simultaneous && waitForChildren)wait = new ();
 
 		for(int i=0;i<children.Length;i++)
 		{

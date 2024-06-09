@@ -27,6 +27,9 @@ public class ScreenEdgeTracking : BulletHellObj
 	public float offset = 0.1f;
 	public float trackingDuration = 0.1f;
 	public Mode mode = Mode.TrackPlayer;
+	public bool setRotation = true;
+
+	public float offsetRandomization = 0;
 
 	public override IEnumerator Fire()
 	{
@@ -35,7 +38,8 @@ public class ScreenEdgeTracking : BulletHellObj
 		var movementAxis = GetMovementAxis(screenSide);
 		float rng = Random.value;
 
-		child.transform.right = axis;
+		if (setRotation)
+			child.transform.right = axis;
 
 		for (float t = 0; t <= trackingDuration; t += Time.deltaTime)
 		{
@@ -53,7 +57,10 @@ public class ScreenEdgeTracking : BulletHellObj
 				_ => throw new System.NotImplementedException(),
 			};
 
-			var pos = movement * movementAxis + axis * offset + Vector2.Scale(line.start, axis);
+			var pos = movement * movementAxis
+				+ axis * offset
+				+ Vector2.Scale(line.start, axis)
+				+ offsetRandomization * axis;
 			child.transform.position = pos;
 
 			yield return null;

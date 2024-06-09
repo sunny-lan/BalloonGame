@@ -25,9 +25,9 @@ public class BGMManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		if (GameManager.BGMManager != this) return;
 		lowPassFilter = GetComponent<AudioLowPassFilter>();
 		audioSource = GetComponent<AudioSource>();
+		if (GameManager.BGMManager != this) return;
 		audioSource.Play();
 	}
 

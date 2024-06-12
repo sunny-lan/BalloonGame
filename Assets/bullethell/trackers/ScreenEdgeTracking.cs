@@ -68,7 +68,7 @@ public class ScreenEdgeTracking : BulletHellObj
 				+ y;
 			child.transform.position = pos;
 
-			Debug.Log($"side={screenSide} line={line} x={x} y={y} pos={pos}");
+			//Debug.Log($"side={screenSide} line={line} x={x} y={y} pos={pos}");
 
 			yield return null;
 		}

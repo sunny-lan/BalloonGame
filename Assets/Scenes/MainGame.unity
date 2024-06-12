@@ -491,7 +491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8115111443177078873, guid: cffc7a70e0ddfea40aafacaf55ba2c48, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8873259186020723203, guid: cffc7a70e0ddfea40aafacaf55ba2c48, type: 3}
       propertyPath: waves
@@ -1159,12 +1159,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5032347769721205750, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032347769721205750, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
       propertyPath: m_LinearDrag
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6807012022393315714, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
+      propertyPath: jumpForce
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
       propertyPath: speed.grab
@@ -1538,7 +1546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &395120311
 Transform:
   m_ObjectHideFlags: 0
@@ -1771,7 +1779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2192041419811953647, guid: e2fb608e61f818440afa8010372f5bf6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7201374527995471304, guid: e2fb608e61f818440afa8010372f5bf6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2732,7 +2740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6390563415856618538, guid: c277c8d25022a0b4bae05c1a03a42a1c, type: 3}
       propertyPath: waves
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6390563415856618538, guid: c277c8d25022a0b4bae05c1a03a42a1c, type: 3}
       propertyPath: simultaneous
@@ -3542,7 +3550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4919274368265824772, guid: df59fdf1160e7a74593512a858620d75, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4500,7 +4508,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1975481766
 Transform:
   m_ObjectHideFlags: 0
@@ -5031,19 +5039,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3344229318423812081, guid: 7826125ccaf45fc439b6097f44fed02a, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3600323912987450595, guid: 7826125ccaf45fc439b6097f44fed02a, type: 3}
-      propertyPath: endAngle
-      value: 360
-      objectReference: {fileID: 0}
-    - target: {fileID: 3600323912987450595, guid: 7826125ccaf45fc439b6097f44fed02a, type: 3}
-      propertyPath: interval
-      value: 75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7176308158457117508, guid: 7826125ccaf45fc439b6097f44fed02a, type: 3}
       propertyPath: waves
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

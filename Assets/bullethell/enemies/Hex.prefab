@@ -880,7 +880,7 @@ PrefabInstance:
     - target: {fileID: -7460568245796739627, guid: 45f7bd5864aa20944b275a6a3e62082a, type: 3}
       propertyPath: clip
       value: 
-      objectReference: {fileID: 8300000, guid: 8ef593e214ebe654b9bf28e91610828b, type: 3}
+      objectReference: {fileID: 8300000, guid: 4d698125d39aa5b42873c69a0a372131, type: 3}
     - target: {fileID: -6241699537721293098, guid: 45f7bd5864aa20944b275a6a3e62082a, type: 3}
       propertyPath: m_Volume
       value: 0.633
@@ -957,7 +957,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 8ef593e214ebe654b9bf28e91610828b, type: 3}
     - target: {fileID: -6241699537721293098, guid: 45f7bd5864aa20944b275a6a3e62082a, type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.281
       objectReference: {fileID: 0}
     - target: {fileID: 1048147318010128202, guid: 45f7bd5864aa20944b275a6a3e62082a, type: 3}
       propertyPath: m_Name

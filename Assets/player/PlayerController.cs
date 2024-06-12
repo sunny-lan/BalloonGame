@@ -246,27 +246,32 @@ public class PlayerController : MonoBehaviour
 
 	private void Grab()
 	{
+		// Find point closest to hand but also inside box
 		var collisions = Physics2D.OverlapAreaAll(handHitbox.bounds.min, handHitbox.bounds.max, ropeMask);
 		Collider2D collision = null;
-		float best = float.PositiveInfinity;
+		(int isInside, float distFromHand) best = (2, float.PositiveInfinity);
+		Vector2 closestPtOn = default;
 		foreach (var c in collisions)
 		{
+			Vector2 pos = c.transform.position;
+			var closestPt = myCollider.ClosestPoint(pos);
 			var dist = (c.transform.position - hand.position).sqrMagnitude;
-			if (dist < best)
+			var score=(isInside: (closestPt - pos).magnitude < 0.01f ? 0 : 1, distFromHand: dist);
+			if (score.isInside < best.isInside || (score.isInside == best.isInside && score.distFromHand< best.distFromHand))
 			{
 				collision = c;
-				best = dist;
+				best = score;
+				closestPtOn = closestPt;
 			}
 		}
 
+		// If grabbed rope then try to attach hinge from player to rope
 		var grabbedRB = collision?.GetComponent<Rigidbody2D>();
-
 		Debug.Log(grabbedRB);
 
 		if (grabbedRB != null)
 		{
 			//snap to box
-			var closestPtOn = collision.transform.position.XY().ClosestPointOn(myCollider.bounds);
 			transform.position += collision.transform.position - closestPtOn.WithZ(0);
 
 			// grab hinge

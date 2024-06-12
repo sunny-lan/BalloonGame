@@ -10,10 +10,10 @@ public class PlaylistSpawner : BulletHellObj
 	public bool waitForChildren = true;
 	public float delayBetween = 0;
 
-	static System.Random rng = new ();
+	static System.Random rng = new();
 	int[] ordering;
 
-	public int currentIndex { get;private set; }
+	public int currentIndex { get; private set; }
 
 	protected override void Start()
 	{
@@ -23,30 +23,35 @@ public class PlaylistSpawner : BulletHellObj
 
 	public override IEnumerator Fire()
 	{
-		if(randomizeOrder)
+		if (randomizeOrder)
 			ordering.Shuffle();
 
 		List<Coroutine> wait = null;
-		if(simultaneous && waitForChildren)wait = new ();
+		if (simultaneous && waitForChildren) wait = new();
 
-		for(int i=0;i<children.Length;i++)
+		for (int i = 0; i < children.Length;)
 		{
-			currentIndex = i;
 			var child = children[ordering[i]];
-			if (simultaneous)
+			if (child.isActiveAndEnabled)
 			{
-				wait.Add(StartCoroutine(child.Fire()));
-			}
-			else
-			{
-				yield return child.Fire();
+				currentIndex = i;
+				if (simultaneous)
+				{
+					wait.Add(StartCoroutine(child.Fire()));
+				}
+				else
+				{
+					yield return child.Fire();
+				}
 			}
 
-			yield return new WaitForSeconds(delayBetween);
+			i++;
+			if (child.isActiveAndEnabled)
+				yield return new WaitForSeconds(delayBetween);
 		}
 
-		if(wait!=null)
-		foreach (var child in wait) yield return child;
+		if (wait != null)
+			foreach (var child in wait) yield return child;
 	}
 
 }

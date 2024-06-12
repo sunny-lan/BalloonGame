@@ -24,8 +24,8 @@ public class Rope : MonoBehaviour
             lsit.Add(a);
             a.GetComponent<RopeSegment>().oldParent = this;
         }
-        this.children = lsit;
         lsit.ForEach(x=>x.parent= null);
+        this.children = lsit;
     }
 
 	public void OnDestroy()

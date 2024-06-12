@@ -72,7 +72,7 @@ public class PlayerUI : MonoBehaviour
 					for (float t = 0; t < 0.2f; t += Time.deltaTime)
 					{
 						var prog = t / 0.2f;
-						var sz = baseSz + Mathf.Sin(prog * Mathf.PI);
+						var sz = baseSz + 10*Mathf.Sin(prog * Mathf.PI);
 						level.fontSize = sz;
 						yield return null;
 					}

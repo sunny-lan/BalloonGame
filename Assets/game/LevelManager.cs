@@ -20,7 +20,8 @@ public class LevelManager : MonoBehaviour
 
 	private void Start()
 	{
-		StartCoroutine(GameManager.BGMManager.SetMuffle(false));
+		GameManager.OnBGMManagerInit += () =>
+			StartCoroutine(GameManager.BGMManager.SetMuffle(false));
 		Respawn();
 	}
 
@@ -37,7 +38,7 @@ public class LevelManager : MonoBehaviour
 		Player.Invuln = true;
 		Player.UnGrab();
 		Player.SetFreeze(true);
-		Stopped=true;
+		Stopped = true;
 	}
 
 	private void ReturnGameLogic()
@@ -59,7 +60,7 @@ public class LevelManager : MonoBehaviour
 
 	private void Lost()
 	{
-		Stopped=true;
+		Stopped = true;
 		PlayerUI.ShowLoseScreen();
 		Time.timeScale = 0;
 	}

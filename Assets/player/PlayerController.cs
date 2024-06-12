@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] Sprite grabbedSprite;
 	[SerializeField] Sprite jumpingSprite;
 
-	Collider2D collider;
+	Collider2D myCollider;
 	private AudioSource audioSource;
 	[SerializeField] private CameraShake shake;
 	Rigidbody2D rb;
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
 		handJoint = GetComponent<HingeJoint2D>();
 		rb = GetComponent<Rigidbody2D>();
-		collider = GetComponent<Collider2D>();
+		myCollider = GetComponent<Collider2D>();
 		audioSource = GetComponent<AudioSource>();
 	}
 
@@ -86,18 +86,20 @@ public class PlayerController : MonoBehaviour
 	public int availJumps = 0;
 
 
+	public float maxAirVelocity = 2.5f;
+
 	private void Update()
 	{
-		if (GetIsGrounded() || grabbed != null)
-			availJumps = airJumpsAllowed;
 
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
+			if(!(CurrentStatus is Status.Air && rb.velocity.x<-maxAirVelocity))
 			rb.AddForce(Vector2.left * speed.Get(CurrentStatus));
 		}
 		if (Input.GetKey(KeyCode.RightArrow))
 		{
-			rb.AddForce(Vector2.right * speed.Get(CurrentStatus));
+			if (!(CurrentStatus is Status.Air && rb.velocity.x > maxAirVelocity))
+				rb.AddForce(Vector2.right * speed.Get(CurrentStatus));
 		}
 
 		if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -106,13 +108,22 @@ public class PlayerController : MonoBehaviour
 				jumpChargeBegin = Time.time;
 			else
 			{
-				if (availJumps > 0)
+				if (GetIsGrounded())
 				{
+					Debug.Log("jump grounded");
 					Jump();
-					availJumps--;
+					availJumps = airJumpsAllowed;
+				}
+				else
+				{
+					Debug.Log("air jump cnt=" + availJumps);
+					if (availJumps > 0)
+					{
+						Jump(true);
+						availJumps--;
+					}
 				}
 			}
-
 		}
 
 
@@ -121,7 +132,7 @@ public class PlayerController : MonoBehaviour
 		{
 			Grab();
 		}
-		if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.Space))
+		if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.UpArrow))
 		{
 			if (grabbed != null && jumpChargeBegin >= 0)
 			{
@@ -129,6 +140,7 @@ public class PlayerController : MonoBehaviour
 			}
 			UnGrab();
 		}
+
 	}
 
 	[SerializeField] AudioClip jump;
@@ -162,10 +174,13 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private void Jump()
+	private void Jump(bool air=false)
 	{
+		if(air)
 		rb.velocity = new(rb.velocity.x, 0);
-		rb.AddForce(GetJumpDirection() * jumpForce, ForceMode2D.Impulse);
+		var jForce = GetJumpDirection() * jumpForce;
+		Debug.Log("jforce="+jForce+" velocity="+rb.velocity);
+		rb.AddForce(jForce, ForceMode2D.Impulse);
 		audioSource.PlayOneShot(jump);
 		StartCoroutine(PlayJumpAnim());
 	}
@@ -205,20 +220,23 @@ public class PlayerController : MonoBehaviour
 		rb.AddForceAtPosition(jumpForce * basis, handHitbox.transform.position, ForceMode2D.Impulse);
 		grabbed.AddForce(-jumpForce * basis, ForceMode2D.Impulse);
 		jumpChargeBegin = -1;
+		availJumps = airJumpsAllowed;
 
 	}
 
+	public float jumpRatio=2;
+
 	private Vector2 GetJumpDirection()
 	{
-		var basis = Vector2.up * jumpForce;
+		var basis = jumpRatio* Vector2.up;
 
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
-			basis += Vector2.left * speed.Get(CurrentStatus);
+			basis += Vector2.left;
 		}
 		if (Input.GetKey(KeyCode.RightArrow))
 		{
-			basis += Vector2.right * speed.Get(CurrentStatus);
+			basis += Vector2.right;
 		}
 
 		basis.Normalize();
@@ -247,6 +265,14 @@ public class PlayerController : MonoBehaviour
 
 		if (grabbedRB != null)
 		{
+			//snap to box
+			var closestPtOn = collision.transform.position.XY().ClosestPointOn(myCollider.bounds);
+			transform.position += collision.transform.position - closestPtOn.WithZ(0);
+
+			// grab hinge
+			handJoint.anchor = transform.worldToLocalMatrix * collision.transform.position.WithW(1);
+			handJoint.connectedBody = grabbedRB;
+			handJoint.enabled = true;
 
 			grabbed = grabbedRB;
 			var balloon = grabbedRB.GetComponent<RopeSegment>().oldParent.GetComponentInParent<Balloon>();
@@ -257,11 +283,8 @@ public class PlayerController : MonoBehaviour
 				grabbedBalloon = balloon;
 			}
 
-			collider.excludeLayers |= ropeMask;
+			myCollider.excludeLayers |= ropeMask;
 
-			handJoint.anchor = transform.worldToLocalMatrix * collision.transform.position.WithW(1);
-			handJoint.connectedBody = grabbedRB;
-			handJoint.enabled = true;
 			body.sprite = grabbedSprite;
 		}
 	}
@@ -271,7 +294,7 @@ public class PlayerController : MonoBehaviour
 		if (grabbed == null) return;
 
 		grabbedBalloon.Grabbed = false;
-		collider.excludeLayers &= ~ropeMask;
+		myCollider.excludeLayers &= ~ropeMask;
 		handJoint.connectedBody = null;
 		grabbed = null;
 		handJoint.enabled = false;

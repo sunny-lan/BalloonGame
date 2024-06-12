@@ -6,11 +6,12 @@ public class DamagePlayerOnHit : MonoBehaviour
 {
 	public float damage = 100;
 
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if(collision.gameObject == GameManager.LevelManager.Player.gameObject)
+		if(collision.gameObject.GetComponentInParent<PlayerController>() is PlayerController player)
 		{
-			GameManager.LevelManager.Player.DoDamage(damage);
+			player.DoDamage(damage);
 		}
 	}
 }

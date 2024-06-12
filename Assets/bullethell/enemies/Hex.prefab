@@ -229,8 +229,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9204978117128014088}
   - {fileID: 1931433920802754344}
+  - {fileID: 9204978117128014088}
   m_Father: {fileID: 6203327774701279095}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &412483054826000656
@@ -250,6 +250,7 @@ MonoBehaviour:
   simultaneous: 0
   randomizeOrder: 0
   waitForChildren: 1
+  delayBetween: 0
 --- !u!1 &4237963101248758471
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +305,7 @@ MonoBehaviour:
   simultaneous: 0
   randomizeOrder: 0
   waitForChildren: 1
+  delayBetween: 0
 --- !u!1 &6023997801723817605
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,7 +430,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  lineOffset: -2
+  lineOffset: -3
 --- !u!1 &6347416569175810000
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,6 +737,7 @@ MonoBehaviour:
   simultaneous: 1
   randomizeOrder: 0
   waitForChildren: 1
+  delayBetween: 0
 --- !u!1 &9182966377435271738
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,7 +786,7 @@ MonoBehaviour:
   fireOnStart: 0
   target: {fileID: 5171127511029347885}
   duration: 0.4
-  speed: 90
+  speed: 180
   trackingDuration: 0.2
 --- !u!1001 &3909769406013919575
 PrefabInstance:
@@ -880,7 +883,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 8ef593e214ebe654b9bf28e91610828b, type: 3}
     - target: {fileID: -6241699537721293098, guid: 45f7bd5864aa20944b275a6a3e62082a, type: 3}
       propertyPath: m_Volume
-      value: 0.751
+      value: 0.633
       objectReference: {fileID: 0}
     - target: {fileID: 1048147318010128202, guid: 45f7bd5864aa20944b275a6a3e62082a, type: 3}
       propertyPath: m_Name
@@ -1149,7 +1152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1786137804300632655, guid: d82b7bb6d6f45ac49be5eeab9cadc716, type: 3}
       propertyPath: startAngle
-      value: 30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1786137804300632655, guid: d82b7bb6d6f45ac49be5eeab9cadc716, type: 3}
       propertyPath: startDistance

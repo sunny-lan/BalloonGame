@@ -30,8 +30,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 321503970217101430}
   - {fileID: 8979001861778991569}
+  - {fileID: 321503970217101430}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2012694085625494664
@@ -51,6 +51,7 @@ MonoBehaviour:
   simultaneous: 1
   randomizeOrder: 0
   waitForChildren: 1
+  delayBetween: 0
 --- !u!1 &8095198258473294308
 GameObject:
   m_ObjectHideFlags: 0

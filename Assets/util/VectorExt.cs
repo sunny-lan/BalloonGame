@@ -16,4 +16,12 @@ public static class VectorExt
 	{
 		return new(v.x, v.y);
 	}
+
+	public static Vector2 ClosestPointOn(this Vector2 v, Bounds b)
+	{
+		return new(
+			Mathf.Clamp(v.x, b.min.x, b.max.x),
+			Mathf.Clamp(v.y, b.min.y, b.max.y)
+		);
+	}
 }

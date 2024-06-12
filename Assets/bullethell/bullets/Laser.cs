@@ -84,7 +84,7 @@ public class Laser : BulletHellObj
 			var hit = Physics2D.Raycast(transform.position, transform.right, float.PositiveInfinity, hits);
 			if (hit.collider != null)
 			{
-				if(hit.collider.GetComponent<PlayerController>() is PlayerController player)
+				if(hit.collider.GetComponentInParent<PlayerController>() is PlayerController player)
 				{
 					player.DoDamage(DamageOverTime * Time.deltaTime);
 				}

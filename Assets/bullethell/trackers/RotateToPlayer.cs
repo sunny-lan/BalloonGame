@@ -18,7 +18,7 @@ public class RotateToPlayer : BulletHellObj
 			var delta = playerPos - target.position;
 
 			destAngle = Quaternion.Euler(new(0, 0, Mathf.Atan2(
-				delta.x, delta.y
+				delta.y, delta.x
 			) * Mathf.Rad2Deg));
 			return destAngle;
 		}

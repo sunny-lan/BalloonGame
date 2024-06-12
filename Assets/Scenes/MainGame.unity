@@ -489,6 +489,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrossLaserPattern
       objectReference: {fileID: 0}
+    - target: {fileID: 8115111443177078873, guid: cffc7a70e0ddfea40aafacaf55ba2c48, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873259186020723203, guid: cffc7a70e0ddfea40aafacaf55ba2c48, type: 3}
+      propertyPath: waves
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1154,6 +1162,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
+      propertyPath: maxAirVelocity
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1510,7 +1522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &395120311
 Transform:
   m_ObjectHideFlags: 0
@@ -1733,9 +1745,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 557718199}
     m_Modifications:
+    - target: {fileID: 1572106900431843765, guid: e2fb608e61f818440afa8010372f5bf6, type: 3}
+      propertyPath: waves
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2192041419811953647, guid: e2fb608e61f818440afa8010372f5bf6, type: 3}
       propertyPath: m_Name
       value: SingleLaserPattern
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192041419811953647, guid: e2fb608e61f818440afa8010372f5bf6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7201374527995471304, guid: e2fb608e61f818440afa8010372f5bf6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2706,6 +2726,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SawbladeRepeatSpawnPattern
       objectReference: {fileID: 0}
+    - target: {fileID: 7431190464230833859, guid: c277c8d25022a0b4bae05c1a03a42a1c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3500,6 +3524,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScissorsPattern
       objectReference: {fileID: 0}
+    - target: {fileID: 4919274368265824772, guid: df59fdf1160e7a74593512a858620d75, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3986,7 +4014,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1506054444964520030, guid: 3ac0b2b19da81584ba756fd73dd4149b, type: 3}
       propertyPath: rate
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1506054444964520030, guid: 3ac0b2b19da81584ba756fd73dd4149b, type: 3}
       propertyPath: spawnArea.width
@@ -4456,7 +4484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1975481766
 Transform:
   m_ObjectHideFlags: 0
@@ -4861,6 +4889,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1468113020170219324, guid: 853b09b2d43fd184e9377f2ddb5ca2ad, type: 3}
+      propertyPath: InvulnDuration
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4479906069124726857, guid: 853b09b2d43fd184e9377f2ddb5ca2ad, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -4933,6 +4965,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 557718199}
     m_Modifications:
+    - target: {fileID: 1712879793618175854, guid: 7826125ccaf45fc439b6097f44fed02a, type: 3}
+      propertyPath: waves
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1946525884124463167, guid: 7826125ccaf45fc439b6097f44fed02a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4976,6 +5012,14 @@ PrefabInstance:
     - target: {fileID: 3344229318423812081, guid: 7826125ccaf45fc439b6097f44fed02a, type: 3}
       propertyPath: m_Name
       value: HexRandomPositionPattern
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600323912987450595, guid: 7826125ccaf45fc439b6097f44fed02a, type: 3}
+      propertyPath: interval
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176308158457117508, guid: 7826125ccaf45fc439b6097f44fed02a, type: 3}
+      propertyPath: waves
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

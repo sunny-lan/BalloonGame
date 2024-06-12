@@ -58,9 +58,10 @@ MonoBehaviour:
     - Key: 1
       Value: 0.5
     keyCollision: 0
-  offset: 0
-  trackingDuration: 0.1
+  offset: 0.5
+  trackingDuration: 0.4
   mode: 1
+  setRotation: 1
   offsetRandomization: 0.5
 --- !u!1 &8781704032790410276
 GameObject:
@@ -92,8 +93,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4785007720105579032}
   - {fileID: 5262617475634419366}
+  - {fileID: 4785007720105579032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1151551529923821708
@@ -112,6 +113,8 @@ MonoBehaviour:
   fireOnStart: 0
   simultaneous: 1
   randomizeOrder: 0
+  waitForChildren: 1
+  delayBetween: 0
 --- !u!1001 &4260503130998718633
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -32,6 +32,15 @@ public class ZoomToPlayer : BulletHellObj
 
 		for (float t = 0; t <= moveTime; t += Time.deltaTime)
 		{
+			DoProg(t);
+
+			yield return null;
+		}
+
+		DoProg(moveTime);
+
+		void DoProg( float t)
+		{
 			var animProg = t / moveTime;
 			var pp = GameManager.LevelManager.Player.transform.position;
 
@@ -40,12 +49,12 @@ public class ZoomToPlayer : BulletHellObj
 				destPos = pp;
 			}
 
-			var trueDestPos = (destPos - originPos).normalized * Mathf.Max(0, (pp-originPos).magnitude + lineOffset) + originPos;
+			var trueDestPos = (destPos - originPos).normalized * Mathf.Max(0, (pp - originPos).magnitude + lineOffset) + originPos;
 
 			target.position = Vector3.Lerp(originPos, trueDestPos, curve.Evaluate(animProg));
-
-			yield return null;
-		}//
+			//Debug.Log($"pp={pp} destPos={destPos} trueDestPos={trueDestPos} pos={target.position} curve={curve.Evaluate(animProg)}");
+			
+		}
 	}
 
 }

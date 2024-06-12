@@ -27,5 +27,6 @@ public class FadeIn : MonoBehaviour
 			g.alpha = prog;
 			yield return null;
 		}
+		g.alpha = 1.0f;
 	}
 }

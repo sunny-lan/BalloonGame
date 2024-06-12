@@ -34,18 +34,23 @@ public class DropinEffect : BulletHellObj
 		for (float t = 0; t <= dropInTime; t += Time.deltaTime)
 		{
 			var animProg = t / dropInTime;
-
-			targetSpriteRenderer.color = new(1, 1, 1, alpha.Evaluate(animProg));
-			targetSpriteRenderer.transform.position = targetPos.position + dropInY.Evaluate(animProg) * Vector3.up;
+			SetProg(animProg);
 
 			yield return null;
 		}
+		SetProg(1);
 
-		if(impactAmt>0)
+		if (impactAmt>0)
 		StartCoroutine(GameManager.LevelManager.CameraShake.Shake(impactDuration, impactAmt));
 		yield return new WaitForSeconds(waitAfter);
 		if (dropOut)
 			targetSpriteRenderer.gameObject.SetActive(false);
+
+		void SetProg(float animProg)
+		{
+			targetSpriteRenderer.color = new(1, 1, 1, alpha.Evaluate(animProg));
+			targetSpriteRenderer.transform.position = targetPos.position + dropInY.Evaluate(animProg) * Vector3.up;
+		}
 	}
 
 }

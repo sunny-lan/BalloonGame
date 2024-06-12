@@ -34,34 +34,41 @@ public class ScreenEdgeTracking : BulletHellObj
 	public override IEnumerator Fire()
 	{
 		var screenSide = RandomlySelectSide();
-		var axis = GetAxis(screenSide);
-		var movementAxis = GetMovementAxis(screenSide);
+
+		var yAxis = GetOffsetAxis(screenSide);
+		var xAxis = GetMovementAxis(screenSide);
+		var yAxisAbs = Vector2.one - xAxis;
+
 		float rng = Random.value;
 
 		if (setRotation)
-			child.transform.right = axis;
+			child.transform.right = yAxis;
 
 		for (float t = 0; t <= trackingDuration; t += Time.deltaTime)
 		{
 			var line = GetLine(screenSide);
-			float start = Vector2.Dot(line.start, movementAxis),
-				end = Vector2.Dot(line.end, movementAxis);
+			float startX = Vector2.Dot(line.start, xAxis),
+				endX = Vector2.Dot(line.end, xAxis);
 
-			var movement = mode switch
+			var x = mode switch
 			{
 				Mode.TrackPlayer => Mathf.Clamp(
-					Vector2.Dot(GameManager.LevelManager.Player.transform.position, movementAxis),
-					start, end
+					Vector2.Dot(GameManager.LevelManager.Player.transform.position, xAxis),
+					startX, endX
 				),
-				Mode.Random => Mathf.Lerp(start, end, rng),
+				Mode.Random => Mathf.Lerp(startX, endX, rng),
 				_ => throw new System.NotImplementedException(),
 			};
 
-			var pos = movement * movementAxis
-				+ axis * offset
-				+ Vector2.Scale(line.start, axis)
-				+ offsetRandomization * axis;
+			var y = offset * yAxis
+				+ offsetRandomization * yAxis
+				+ Vector2.Scale(line.start, yAxisAbs);
+
+			var pos = x * xAxis
+				+ y;
 			child.transform.position = pos;
+
+			Debug.Log($"side={screenSide} line={line} x={x} y={y} pos={pos}");
 
 			yield return null;
 		}
@@ -80,7 +87,7 @@ public class ScreenEdgeTracking : BulletHellObj
 		};
 	}
 
-	private Vector2 GetAxis(ScreenSide s)
+	private Vector2 GetOffsetAxis(ScreenSide s)
 	{
 		return s switch
 		{

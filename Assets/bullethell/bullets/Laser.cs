@@ -57,12 +57,7 @@ public class Laser : BulletHellObj
 		for (float t = 0; t <= PreviewAnimTime; t += Time.deltaTime)
 		{
 			var animProgress = t / PreviewAnimTime;
-			preview.transform.localScale = new(
-				previewXScaling.Evaluate(animProgress),
-				previewYScaling.Evaluate(animProgress),1);
-			baseSR.color= previewSR.color = new Color(1,0,0,previewAlpha.Evaluate(animProgress));
-			bodySR.color = new(1, 1, 1, previewBodyAlpha.Evaluate(animProgress));
-			
+			DoProg(animProgress);
 
 			yield return null;
 		}
@@ -96,5 +91,14 @@ public class Laser : BulletHellObj
 		Firing = false;
 		body.SetActive(false);
 		baseSR.gameObject.SetActive(false);
+
+		void DoProg(float animProgress)
+		{
+			preview.transform.localScale = new(
+							previewXScaling.Evaluate(animProgress),
+							previewYScaling.Evaluate(animProgress), 1);
+			baseSR.color = previewSR.color = new Color(1, 0, 0, previewAlpha.Evaluate(animProgress));
+			bodySR.color = new(1, 1, 1, previewBodyAlpha.Evaluate(animProgress));
+		}
 	}
 }

@@ -1158,13 +1158,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5032347769721205750, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6807012022393315714, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
+      propertyPath: speed.grab
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
+      propertyPath: baseJumpForce
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
       propertyPath: maxAirVelocity
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
+      propertyPath: maxChargedJumpForce
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2728,7 +2744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7431190464230833859, guid: c277c8d25022a0b4bae05c1a03a42a1c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5012,6 +5028,14 @@ PrefabInstance:
     - target: {fileID: 3344229318423812081, guid: 7826125ccaf45fc439b6097f44fed02a, type: 3}
       propertyPath: m_Name
       value: HexRandomPositionPattern
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344229318423812081, guid: 7826125ccaf45fc439b6097f44fed02a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600323912987450595, guid: 7826125ccaf45fc439b6097f44fed02a, type: 3}
+      propertyPath: endAngle
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 3600323912987450595, guid: 7826125ccaf45fc439b6097f44fed02a, type: 3}
       propertyPath: interval

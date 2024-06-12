@@ -38,7 +38,14 @@ public class BGMManager : MonoBehaviour
 		for (float t = 0; t <= muffleTime; t += Time.deltaTime)
 		{
 			float prog = t / muffleTime;
+			SetProg( prog);
 
+			yield return null;
+		}
+		SetProg(1);
+
+		void SetProg( float prog)
+		{
 			if (muffle)
 			{
 				lowPassFilter.cutoffFrequency = Mathf.Lerp(curCutoff, muffleAmt, prog);
@@ -49,8 +56,6 @@ public class BGMManager : MonoBehaviour
 				lowPassFilter.cutoffFrequency = Mathf.Lerp(curCutoff, unmuffleAmt, prog);
 				audioSource.volume = Mathf.Lerp(curVol, unmuffleVol, prog);
 			}
-
-			yield return null;
 		}
 	}
 }

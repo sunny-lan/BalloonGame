@@ -66,24 +66,25 @@ public class PlayerUI : MonoBehaviour
 		{
 			if (lvl > lastLevel)
 			{
-				IEnumerator blip()
-				{
-					var baseSz = level.fontSize;
-					for (float t = 0; t < 0.2f; t += Time.deltaTime)
-					{
-						var prog = t / 0.2f;
-						var sz = baseSz + 10*Mathf.Sin(prog * Mathf.PI);
-						level.fontSize = sz;
-						yield return null;
-					}
-					level.fontSize = baseSz;
-				}
-				StartCoroutine(blip());
+				StartCoroutine(BlipLevelCounter());
 				ap.PlayOneShot(levelupSound);
 			}
 			lastLevel = lvl;
 			level.text = "Level " + lastLevel;
 		}
+	}
+
+	private IEnumerator BlipLevelCounter()
+	{
+		var baseSz = level.fontSize;
+		for (float t = 0; t < 0.2f; t += Time.deltaTime)
+		{
+			var prog = t / 0.2f;
+			var sz = baseSz + 10 * Mathf.Sin(prog * Mathf.PI);
+			level.fontSize = sz;
+			yield return null;
+		}
+		level.fontSize = baseSz;
 	}
 
 	public IEnumerator PlayerLostLifeAnimation()

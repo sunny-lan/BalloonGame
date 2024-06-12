@@ -16,6 +16,10 @@ public static class VectorExt
 	{
 		return new(v.x, v.y);
 	}
+	public static Vector2 Abs(this Vector2 v)
+	{
+		return new(Mathf.Abs(v.x), Mathf.Abs(v.y));
+	}
 
 	public static Vector2 ClosestPointOn(this Vector2 v, Bounds b)
 	{

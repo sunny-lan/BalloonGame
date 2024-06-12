@@ -85,14 +85,11 @@ public class ScissorsPattern : BulletHellObj
 		for (float t = 0; t <= rotationTime; t += Time.deltaTime)
 		{
 			var animProg = t / rotationTime;
-			var newAnimVal = rotationCurve.Evaluate(animProg);
-
-			horizontal.transform.RotateAround(playerPos, direction, (newAnimVal - lastAnimVal) * totalRotAngle);
-			vertical.transform.RotateAround(playerPos, -direction, (newAnimVal - lastAnimVal) * totalRotAngle);
+			SetProg( animProg);
 
 			yield return null;
-			lastAnimVal = newAnimVal;
 		}
+		SetProg(1);
 
 		yield return new WaitForSeconds(waitAfterRotate);
 
@@ -101,5 +98,14 @@ public class ScissorsPattern : BulletHellObj
 
 		horizontal.gameObject.SetActive(false);
 		vertical.gameObject.SetActive(false);
+
+		void SetProg( float animProg)
+		{
+			var newAnimVal = rotationCurve.Evaluate(animProg);
+
+			horizontal.transform.RotateAround(playerPos, direction, (newAnimVal - lastAnimVal) * totalRotAngle);
+			vertical.transform.RotateAround(playerPos, -direction, (newAnimVal - lastAnimVal) * totalRotAngle);
+			lastAnimVal = newAnimVal;
+		}
 	}
 }

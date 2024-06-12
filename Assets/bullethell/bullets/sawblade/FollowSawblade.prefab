@@ -308,6 +308,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  lineOffset: 0.3
 --- !u!1 &3752394345579877604
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,6 +556,8 @@ MonoBehaviour:
   fireOnStart: 0
   simultaneous: 1
   randomizeOrder: 0
+  waitForChildren: 1
+  delayBetween: 0
 --- !u!1 &5857963008786670531
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +610,8 @@ MonoBehaviour:
   fireOnStart: 0
   simultaneous: 1
   randomizeOrder: 0
+  waitForChildren: 1
+  delayBetween: 0
 --- !u!1 &5938283825355128969
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,6 +897,8 @@ MonoBehaviour:
   fireOnStart: 0
   simultaneous: 0
   randomizeOrder: 0
+  waitForChildren: 1
+  delayBetween: 0
 --- !u!1 &8198525702979161001
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +958,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8879505824880068100}
     m_Modifications:
+    - target: {fileID: 393365295624971849, guid: 914ed6d7e612cbd439613c27e640418b, type: 3}
+      propertyPath: m_Radius
+      value: 0.23
+      objectReference: {fileID: 0}
     - target: {fileID: 759092286965101145, guid: 914ed6d7e612cbd439613c27e640418b, type: 3}
       propertyPath: m_Name
       value: Sawblade

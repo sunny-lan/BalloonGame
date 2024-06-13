@@ -56,12 +56,23 @@ public class LevelManager : MonoBehaviour
 	int lastLives = -1;
 	private void Update()
 	{
-		var lives = GameManager.LevelManager.Player.Lives;
+		var lives = Player.Lives;
 		if (lives < lastLives)
 		{
 			StartCoroutine(OnPlayerLostLife());
 		}
 		lastLives = lives;
+		if(Level.totalIndex == Level.currentIndex)
+		{
+			Won();
+		}
+	}
+
+	private void Won()
+	{
+		Stopped = true;
+		PlayerUI.ShowWinScreen();
+		Time.timeScale = 0;
 	}
 
 	private void Lost()

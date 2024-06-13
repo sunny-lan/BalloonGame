@@ -14,6 +14,7 @@ public class PlaylistSpawner : BulletHellObj
 	int[] ordering;
 
 	public int currentIndex { get; private set; }
+	public int totalIndex => children.Length;
 
 	protected override void Start()
 	{
@@ -49,6 +50,8 @@ public class PlaylistSpawner : BulletHellObj
 			if (child.isActiveAndEnabled)
 				yield return new WaitForSeconds(delayBetween);
 		}
+
+		currentIndex = children.Length;
 
 		if (wait != null)
 			foreach (var child in wait) yield return child;

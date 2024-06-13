@@ -7,6 +7,7 @@ public class RespawnPlatform : MonoBehaviour
 {
 	[SerializeField] Transform respawnPos;
 	public float InvulnDuration = 3f;
+	public float followingInvulnDuration = 2f;
 
 	private void OnCollisionExit2D(Collision2D collision)
 	{
@@ -18,15 +19,26 @@ public class RespawnPlatform : MonoBehaviour
 
 	private void Close()
 	{
+		if (cancelInvuln2 != null) { cancelInvuln2(); cancelInvuln2 = null; }
 		gameObject.SetActive(false);
-		GameManager.LevelManager.Player.Invuln = false;
+		bool isCancelled = false;
+		cancelInvuln2 = () => isCancelled = true;
+		IEnumerator setInvuln()
+		{
+			yield return new WaitForSeconds(followingInvulnDuration);
+			if (!isCancelled)
+				GameManager.LevelManager.Player.Invuln = false;
+		}
+		StartCoroutine(setInvuln());
 	}
 
 	Action cancelLastInvulnTimeout;
+	Action cancelInvuln2;
 
 	public void Respawn(PlayerController player)
 	{
-		if (cancelLastInvulnTimeout != null) { cancelLastInvulnTimeout(); }
+		if (cancelLastInvulnTimeout != null) { cancelLastInvulnTimeout(); cancelLastInvulnTimeout = null; }
+		if (cancelInvuln2 != null) { cancelInvuln2(); cancelInvuln2 = null; }
 
 		player.Invuln = true;
 		gameObject.SetActive(true);

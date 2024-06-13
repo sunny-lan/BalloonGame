@@ -88,6 +88,8 @@ public class PlayerController : MonoBehaviour
 
 	public float maxAirVelocity = 2.5f;
 
+	[SerializeField] GameObject ripple;
+
 	private void Update()
 	{
 
@@ -182,7 +184,11 @@ public class PlayerController : MonoBehaviour
 	private void Jump(bool air = false)
 	{
 		if (air)
+		{
 			rb.velocity = new(rb.velocity.x, 0);
+			Instantiate(ripple, transform);
+		}
+
 		var jForce = GetJumpDirection() * jumpForce;
 		Debug.Log("jforce=" + jForce + " velocity=" + rb.velocity);
 		rb.AddForce(jForce, ForceMode2D.Impulse);

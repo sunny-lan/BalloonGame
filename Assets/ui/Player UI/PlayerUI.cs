@@ -20,6 +20,7 @@ public class PlayerUI : MonoBehaviour
 	[SerializeField] RectTransform canvas;
 
 	[SerializeField] RectTransform loseScreen;
+	[SerializeField] RectTransform winScreen;
 
 	private void Awake()
 	{
@@ -35,6 +36,12 @@ public class PlayerUI : MonoBehaviour
 	{
 		StartCoroutine(GameManager.BGMManager.SetMuffle(true));
 		loseScreen.gameObject.SetActive(true);
+	}
+
+	public void ShowWinScreen()
+	{
+		StartCoroutine(GameManager.BGMManager.SetMuffle(true));
+		winScreen.gameObject.SetActive(true);
 	}
 
 	public void ReturnMainMenu()

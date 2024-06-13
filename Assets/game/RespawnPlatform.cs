@@ -9,6 +9,13 @@ public class RespawnPlatform : MonoBehaviour
 	public float InvulnDuration = 3f;
 	public float followingInvulnDuration = 2f;
 
+	Collider2D mycollider;
+
+	private void Awake()
+	{
+		mycollider = GetComponent<Collider2D>();
+	}
+
 	private void OnCollisionExit2D(Collision2D collision)
 	{
 		if (collision.gameObject == GameManager.LevelManager.Player.gameObject)
@@ -20,16 +27,19 @@ public class RespawnPlatform : MonoBehaviour
 	private void Close()
 	{
 		if (cancelInvuln2 != null) { cancelInvuln2(); cancelInvuln2 = null; }
-		gameObject.SetActive(false);
 		bool isCancelled = false;
 		cancelInvuln2 = () => isCancelled = true;
 		IEnumerator setInvuln()
 		{
 			yield return new WaitForSeconds(followingInvulnDuration);
 			if (!isCancelled)
+			{
 				GameManager.LevelManager.Player.Invuln = false;
+				gameObject.SetActive(false);
+			}
 		}
 		StartCoroutine(setInvuln());
+		mycollider.enabled = false;
 	}
 
 	Action cancelLastInvulnTimeout;
@@ -42,6 +52,7 @@ public class RespawnPlatform : MonoBehaviour
 
 		player.Invuln = true;
 		gameObject.SetActive(true);
+		mycollider.enabled = true;
 		player.transform.position = respawnPos.position;
 		player.transform.rotation = Quaternion.identity;
 		bool isCancelled = false;

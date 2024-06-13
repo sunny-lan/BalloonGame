@@ -505,7 +505,7 @@ MonoBehaviour:
   jumpMeter: {fileID: 8826332426206080042}
   canvas: {fileID: 2829803669431102324}
   loseScreen: {fileID: 4871387760902780230}
-  winScreen: {fileID: 0}
+  winScreen: {fileID: 4044245544582753349}
 --- !u!82 &3717070944549346993
 AudioSource:
   m_ObjectHideFlags: 0

@@ -99,4 +99,5 @@ public class PlayerUI : MonoBehaviour
 		ap.PlayOneShot(deathSound);
 		yield return GameManager.LevelManager.CameraShake.Shake(lifeLostShakeDuration, lifeLostShakeAmt);
 	}
+
 }

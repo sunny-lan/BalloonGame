@@ -1788,6 +1788,7 @@ MonoBehaviour:
   randomizeOrder: 0
   waitForChildren: 1
   delayBetween: 0
+  startIdx: 0
 --- !u!1001 &410769554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2388,6 +2389,7 @@ MonoBehaviour:
   randomizeOrder: 0
   waitForChildren: 1
   delayBetween: 3
+  startIdx: 0
 --- !u!1001 &560160911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2819,7 +2821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &746705038
 Transform:
   m_ObjectHideFlags: 0

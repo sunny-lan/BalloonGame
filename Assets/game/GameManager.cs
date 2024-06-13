@@ -19,6 +19,16 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public static bool EnableOptimization
+	{
+		get => enableOptimization; set
+		{
+			enableOptimization = value;
+			EnableOptimizationChanged?.Invoke();
+		}
+	}
+	public static event Action EnableOptimizationChanged;
+
 	public static event Action BGMManagerInit;
 	public static void OnBGMManagerInit(Action a)
 	{
@@ -27,4 +37,6 @@ public class GameManager : MonoBehaviour
 		else
 			BGMManagerInit += a;
 	}
+
+	private static bool enableOptimization = false;
 }

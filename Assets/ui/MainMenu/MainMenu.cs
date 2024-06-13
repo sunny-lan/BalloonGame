@@ -3,16 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject tutorial;
 	[SerializeField] GameObject credits;
+    [SerializeField] Toggle optimizationEnabled;
 
 	private void Start()
 	{
         StartCoroutine(playBGM()
         );
+
+        optimizationEnabled.isOn = GameManager.EnableOptimization;
 	}
 
 	private IEnumerator playBGM()
@@ -47,5 +51,10 @@ public class MainMenu : MonoBehaviour
     public void CloseTutorial()
     {
         tutorial.SetActive(false);
+    }
+
+    public void OptimizationEnabledChanged()
+    {
+        GameManager.EnableOptimization = optimizationEnabled.isOn;
     }
 }

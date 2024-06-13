@@ -13,8 +13,9 @@ public class PlaylistSpawner : BulletHellObj
 	static System.Random rng = new();
 	int[] ordering;
 
-	public int currentIndex { get; private set; }
+	public int currentIndex { get;private set; }
 	public int totalIndex => children.Length;
+	public int startIdx = 0;
 
 	protected override void Start()
 	{
@@ -30,7 +31,7 @@ public class PlaylistSpawner : BulletHellObj
 		List<Coroutine> wait = null;
 		if (simultaneous && waitForChildren) wait = new();
 
-		for (int i = 0; i < children.Length;)
+		for (int i = startIdx; i < children.Length;)
 		{
 			var child = children[ordering[i]];
 			if (child.isActiveAndEnabled)

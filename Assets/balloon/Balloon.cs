@@ -11,25 +11,65 @@ public class Balloon : MonoBehaviour
 	public float balanceVelocity = 0.1f;
 	public float grabbedVelocity = -0.2f;
 
+	[SerializeField] Rope rope;
 	[SerializeField] Rigidbody2D ropeTopSegment;
 	[SerializeField] LayerMask popMask;
 	[SerializeField] Sprite pop;
 	public float popDuration = 0.1f;
 	public float popForce = 5;
-	public bool Grabbed = false;
+	private bool grabbed = false;
 	public float balanceVelocityRange = 0.5f;
+	public float spawnSimDuration = 3f;
 
 
 	Rigidbody2D rb;
 	private SpriteRenderer sr;
+
+	public bool Grabbed
+	{
+		get => grabbed; set
+		{
+			grabbed = value;
+			if (grabbed)
+				rope.Unfreeze();
+			else
+			{
+				if (GameManager.EnableOptimization)
+					StartCoroutine(WaitAndDisable());
+			}
+		}
+	}
 
 	void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
 		sr = GetComponent<SpriteRenderer>();
 		balanceVelocity += Random.value * balanceVelocityRange;
+		GameManager.EnableOptimizationChanged += GameManager_EnableOptimizationChanged;
 	}
 
+	private void GameManager_EnableOptimizationChanged()
+	{
+        if (!GameManager.EnableOptimization)
+			rope.Unfreeze();
+		else
+			StartCoroutine(WaitAndDisable());
+
+	}
+
+	private void Start()
+	{
+
+		if (GameManager.EnableOptimization)
+			StartCoroutine(WaitAndDisable());
+	}
+
+	private IEnumerator WaitAndDisable()
+	{
+		yield return new WaitForSeconds(spawnSimDuration);
+		if (!Grabbed && GameManager.EnableOptimization)
+			rope.Freeze(transform);
+	}
 
 	// Update is called once per frame
 	void FixedUpdate()

@@ -28,4 +28,9 @@ public static class VectorExt
 			Mathf.Clamp(v.y, b.min.y, b.max.y)
 		);
 	}
+
+	public static Color WithAlpha(this Color v, float alpha)
+	{
+		return new Color(v.r,v.g, v.b, alpha);
+	}
 }

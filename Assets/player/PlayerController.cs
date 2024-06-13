@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -90,10 +91,26 @@ public class PlayerController : MonoBehaviour
 
 	[SerializeField] GameObject ripple;
 
+
+	bool lastInvuln = false;
+
 	private void Update()
 	{
+		if (lastInvuln != Invuln)
+		{
+			if (Invuln)
+			{
+				body.color = body.color.WithAlpha(0.5f);
+			}
+			else
+			{
 
-		if (GetIsGrounded() || grabbed!=null)
+				body.color = body.color.WithAlpha(1);
+			}
+			lastInvuln = Invuln;
+		}
+
+		if (GetIsGrounded() || grabbed != null)
 		{
 			availJumps = airJumpsAllowed;
 		}

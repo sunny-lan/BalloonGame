@@ -20,9 +20,15 @@ public class LevelManager : MonoBehaviour
 
 	private void Start()
 	{
-		GameManager.OnBGMManagerInit += () =>
-			StartCoroutine(GameManager.BGMManager.SetMuffle(false));
+		GameManager.OnBGMManagerInit(() =>
+			StartCoroutine(PlayMusicAfterOneFRame()));
 		Respawn();
+	}
+
+	IEnumerator PlayMusicAfterOneFRame()
+	{
+		yield return null;
+		yield return GameManager.BGMManager.SetMuffle(false);
 	}
 
 

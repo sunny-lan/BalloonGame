@@ -91,10 +91,15 @@ public class PlayerController : MonoBehaviour
 	private void Update()
 	{
 
+		if (GetIsGrounded() || grabbed!=null)
+		{
+			availJumps = airJumpsAllowed;
+		}
+
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
-			if(!(CurrentStatus is Status.Air && rb.velocity.x<-maxAirVelocity))
-			rb.AddForce(Vector2.left * speed.Get(CurrentStatus));
+			if (!(CurrentStatus is Status.Air && rb.velocity.x < -maxAirVelocity))
+				rb.AddForce(Vector2.left * speed.Get(CurrentStatus));
 		}
 		if (Input.GetKey(KeyCode.RightArrow))
 		{
@@ -174,12 +179,12 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private void Jump(bool air=false)
+	private void Jump(bool air = false)
 	{
-		if(air)
-		rb.velocity = new(rb.velocity.x, 0);
+		if (air)
+			rb.velocity = new(rb.velocity.x, 0);
 		var jForce = GetJumpDirection() * jumpForce;
-		Debug.Log("jforce="+jForce+" velocity="+rb.velocity);
+		Debug.Log("jforce=" + jForce + " velocity=" + rb.velocity);
 		rb.AddForce(jForce, ForceMode2D.Impulse);
 		audioSource.PlayOneShot(jump);
 		StartCoroutine(PlayJumpAnim());
@@ -224,11 +229,11 @@ public class PlayerController : MonoBehaviour
 
 	}
 
-	public float jumpRatio=2;
+	public float jumpRatio = 2;
 
 	private Vector2 GetJumpDirection()
 	{
-		var basis = jumpRatio* Vector2.up;
+		var basis = jumpRatio * Vector2.up;
 
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
@@ -256,8 +261,8 @@ public class PlayerController : MonoBehaviour
 			Vector2 pos = c.transform.position;
 			var closestPt = myCollider.ClosestPoint(pos);
 			var dist = (c.transform.position - hand.position).sqrMagnitude;
-			var score=(isInside: (closestPt - pos).magnitude < 0.01f ? 0 : 1, distFromHand: dist);
-			if (score.isInside < best.isInside || (score.isInside == best.isInside && score.distFromHand< best.distFromHand))
+			var score = (isInside: (closestPt - pos).magnitude < 0.01f ? 0 : 1, distFromHand: dist);
+			if (score.isInside < best.isInside || (score.isInside == best.isInside && score.distFromHand < best.distFromHand))
 			{
 				collision = c;
 				best = score;

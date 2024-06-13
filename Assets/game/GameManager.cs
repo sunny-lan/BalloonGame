@@ -15,9 +15,16 @@ public class GameManager : MonoBehaviour
 		{
 			bGMManager = value;
 			if (bGMManager != null)
-				OnBGMManagerInit?.Invoke();
+				BGMManagerInit?.Invoke();
 		}
 	}
 
-	public static event Action OnBGMManagerInit;
+	public static event Action BGMManagerInit;
+	public static void OnBGMManagerInit(Action a)
+	{
+		if (bGMManager != null)
+			a();
+		else
+			BGMManagerInit += a;
+	}
 }

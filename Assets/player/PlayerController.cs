@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -94,6 +94,13 @@ public class PlayerController : MonoBehaviour
 
 	bool lastInvuln = false;
 
+	public InputAction jumpInput;
+	public InputAction moveInput;
+	public InputAction grabInput;
+
+	bool lastJumpInput = false;
+	bool lastGrabInput = false;
+
 	private void Update()
 	{
 		if (lastInvuln != Invuln)
@@ -115,18 +122,21 @@ public class PlayerController : MonoBehaviour
 			availJumps = airJumpsAllowed;
 		}
 
-		if (Input.GetKey(KeyCode.LeftArrow))
+		var movement = moveInput.ReadValue<float>();
+		if (movement<0)
 		{
 			if (!(CurrentStatus is Status.Air && rb.velocity.x < -maxAirVelocity))
-				rb.AddForce(Vector2.left * speed.Get(CurrentStatus));
+				rb.AddForce(Vector2.left * speed.Get(CurrentStatus) * -movement);
 		}
-		if (Input.GetKey(KeyCode.RightArrow))
+		if (movement>0)
 		{
 			if (!(CurrentStatus is Status.Air && rb.velocity.x > maxAirVelocity))
-				rb.AddForce(Vector2.right * speed.Get(CurrentStatus));
+				rb.AddForce(Vector2.right * speed.Get(CurrentStatus) * movement);
 		}
 
-		if (Input.GetKeyDown(KeyCode.UpArrow))
+		var curJumpInput= jumpInput.ReadValue<bool>();
+
+		if (curJumpInput && !lastJumpInput)
 		{
 			if (grabbed != null)
 				jumpChargeBegin = Time.time;
@@ -151,12 +161,12 @@ public class PlayerController : MonoBehaviour
 		}
 
 
-
-		if (Input.GetKeyDown(KeyCode.LeftShift))
+		var curGrabInput = grabInput.ReadValue<bool>();
+		if (curGrabInput && !lastGrabInput)
 		{
 			Grab();
 		}
-		if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.UpArrow))
+		if ((lastGrabInput && !curGrabInput) || (lastJumpInput && !curJumpInput))
 		{
 			if (grabbed != null && jumpChargeBegin >= 0)
 			{
@@ -164,6 +174,9 @@ public class PlayerController : MonoBehaviour
 			}
 			UnGrab();
 		}
+
+		lastJumpInput = curJumpInput;
+		lastGrabInput = curGrabInput;
 
 	}
 

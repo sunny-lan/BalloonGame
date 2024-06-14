@@ -392,6 +392,89 @@ MonoBehaviour:
   availJumps: 0
   maxAirVelocity: 2.5
   ripple: {fileID: 7176604330260351060, guid: 3e06e0708368f6348b71a762947b5d05, type: 3}
+  jumpInput:
+    m_Name: Jump Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b0b73bea-4147-4f5d-9628-7ad4e56c3f2a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 582a0514-ae7f-479b-a59d-ea3d8d5057ff
+      m_Path: <Joystick>/stick/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump Input
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 4e6f4c62-2205-407f-be0a-e55767ac7b33
+      m_Path: <Keyboard>/upArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump Input
+      m_Flags: 0
+    m_Flags: 0
+  moveInput:
+    m_Name: Move Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 98e73de2-4a9c-4e25-ae84-88e8f3165a08
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: dbe0f7bf-67d4-48d8-aee6-6b2bb89ed346
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move Input
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: b13a74ef-6869-4dcd-b732-fd5ed90a88b2
+      m_Path: <Keyboard>/leftArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move Input
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 519ff961-dc93-44e7-8d75-87c12f09e6a6
+      m_Path: <Keyboard>/rightArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move Input
+      m_Flags: 8
+    - m_Name: 
+      m_Id: 577db28e-595e-40d9-a87f-d86b19c58e35
+      m_Path: <Joystick>/stick/x
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move Input
+      m_Flags: 0
+    m_Flags: 0
+  grabInput:
+    m_Name: Grab Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7fce7249-1fdc-4b78-b0d5-1100444f3440
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 6e431365-1070-4448-96cc-fb69bfb7b880
+      m_Path: <Keyboard>/leftShift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Grab Input
+      m_Flags: 0
+    m_Flags: 0
   jump: {fileID: 8300000, guid: c15a7c9bd91f7ab4b965d80f5c8b898a, type: 3}
   jumpAnimTime: 0.05
   jumpRatio: 2

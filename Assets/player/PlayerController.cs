@@ -98,14 +98,14 @@ public class PlayerController : MonoBehaviour
 	public InputAction moveInput;
 	public InputAction grabInput;
 
-	 void OnEnable()
+	void OnEnable()
 	{
 		jumpInput.Enable();
 		moveInput.Enable();
 		grabInput.Enable();
 	}
 
-	 void OnDisable()
+	void OnDisable()
 	{
 		jumpInput.Disable();
 		moveInput.Disable();
@@ -116,7 +116,8 @@ public class PlayerController : MonoBehaviour
 	bool lastJumpInput = false;
 	bool lastGrabInput = false;
 
-	private void Update()
+
+	private void FixedUpdate()
 	{
 		if (lastInvuln != Invuln)
 		{
@@ -137,19 +138,19 @@ public class PlayerController : MonoBehaviour
 			availJumps = airJumpsAllowed;
 		}
 
-		var movement = moveInput.ReadValue<float>();
-		if (movement<0)
+		var leftRightInput = moveInput.ReadValue<float>();
+		if (leftRightInput < 0)
 		{
 			if (!(CurrentStatus is Status.Air && rb.velocity.x < -maxAirVelocity))
-				rb.AddForce(Vector2.left * speed.Get(CurrentStatus) * -movement);
+				rb.AddForce(Vector2.left * speed.Get(CurrentStatus) * -leftRightInput);
 		}
-		if (movement>0)
+		if (leftRightInput > 0)
 		{
 			if (!(CurrentStatus is Status.Air && rb.velocity.x > maxAirVelocity))
-				rb.AddForce(Vector2.right * speed.Get(CurrentStatus) * movement);
+				rb.AddForce(Vector2.right * speed.Get(CurrentStatus) * leftRightInput);
 		}
 
-		var curJumpInput= jumpInput.IsPressed();
+		var curJumpInput = jumpInput.IsPressed();
 
 		if (curJumpInput && !lastJumpInput)
 		{
@@ -286,14 +287,7 @@ public class PlayerController : MonoBehaviour
 	{
 		var basis = jumpRatio * Vector2.up;
 
-		if (Input.GetKey(KeyCode.LeftArrow))
-		{
-			basis += Vector2.left;
-		}
-		if (Input.GetKey(KeyCode.RightArrow))
-		{
-			basis += Vector2.right;
-		}
+		basis += Vector2.right * moveInput.ReadValue<float>();
 
 		basis.Normalize();
 		return basis;

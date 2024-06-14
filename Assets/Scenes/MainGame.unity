@@ -1377,7 +1377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
       propertyPath: speed.grab
-      value: 3
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
+      propertyPath: speed.ground
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
       propertyPath: baseJumpForce

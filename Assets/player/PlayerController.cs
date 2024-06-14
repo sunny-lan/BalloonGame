@@ -98,6 +98,21 @@ public class PlayerController : MonoBehaviour
 	public InputAction moveInput;
 	public InputAction grabInput;
 
+	 void OnEnable()
+	{
+		jumpInput.Enable();
+		moveInput.Enable();
+		grabInput.Enable();
+	}
+
+	 void OnDisable()
+	{
+		jumpInput.Disable();
+		moveInput.Disable();
+		grabInput.Disable(); grabInput.Disable();
+
+	}
+
 	bool lastJumpInput = false;
 	bool lastGrabInput = false;
 
@@ -134,7 +149,7 @@ public class PlayerController : MonoBehaviour
 				rb.AddForce(Vector2.right * speed.Get(CurrentStatus) * movement);
 		}
 
-		var curJumpInput= jumpInput.ReadValue<bool>();
+		var curJumpInput= jumpInput.IsPressed();
 
 		if (curJumpInput && !lastJumpInput)
 		{
@@ -161,7 +176,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 
-		var curGrabInput = grabInput.ReadValue<bool>();
+		var curGrabInput = grabInput.IsPressed();
 		if (curGrabInput && !lastGrabInput)
 		{
 			Grab();

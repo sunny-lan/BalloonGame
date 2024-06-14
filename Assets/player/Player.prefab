@@ -395,7 +395,7 @@ MonoBehaviour:
   jumpInput:
     m_Name: Jump Input
     m_Type: 0
-    m_ExpectedControlType: 
+    m_ExpectedControlType: Button
     m_Id: b0b73bea-4147-4f5d-9628-7ad4e56c3f2a
     m_Processors: 
     m_Interactions: 
@@ -420,7 +420,7 @@ MonoBehaviour:
   moveInput:
     m_Name: Move Input
     m_Type: 0
-    m_ExpectedControlType: 
+    m_ExpectedControlType: Axis
     m_Id: 98e73de2-4a9c-4e25-ae84-88e8f3165a08
     m_Processors: 
     m_Interactions: 
@@ -461,7 +461,7 @@ MonoBehaviour:
   grabInput:
     m_Name: Grab Input
     m_Type: 0
-    m_ExpectedControlType: 
+    m_ExpectedControlType: Button
     m_Id: 7fce7249-1fdc-4b78-b0d5-1100444f3440
     m_Processors: 
     m_Interactions: 

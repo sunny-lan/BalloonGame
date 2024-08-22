@@ -1,3 +1,4 @@
+using GoogleMobileAds.Api;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +14,10 @@ public class MainMenu : MonoBehaviour
 
 	private void Start()
 	{
-        StartCoroutine(playBGM()
+
+		MobileAds.Initialize(initStatus => { });
+
+		StartCoroutine(playBGM()
         );
 
         optimizationEnabled.isOn = GameManager.EnableOptimization;

@@ -22,9 +22,16 @@ public class PlayerUI : MonoBehaviour
 	[SerializeField] RectTransform loseScreen;
 	[SerializeField] RectTransform winScreen;
 
+	[SerializeField] InterstitialAdG interstitialAd;
+
 	private void Awake()
 	{
 		ap = GetComponent<AudioSource>();
+		interstitialAd.OnAdClosed.AddListener(() =>
+		{
+			SceneManager.LoadScene("MainGame");
+			Time.timeScale = 1;
+		});
 	}
 
 	public void GetWorldCorners(Vector3[] worldSpaceArray)
@@ -49,6 +56,14 @@ public class PlayerUI : MonoBehaviour
 		SceneManager.LoadScene("MainMenu");
 		Time.timeScale = 1;
 	}
+
+	public void Retry()
+	{
+		interstitialAd.gameObject.SetActive(true);
+		
+	}
+
+	
 
 	int lastLevel = 999;
 

@@ -9,9 +9,9 @@ public class BannerAdG : MonoBehaviour
 	// These ad units are configured to always serve test ads.
 	[SerializeField]
 #if UNITY_ANDROID
-	private string _adUnitId = "ca-app-pub-3940256099942544/6300978111";
+	private string _adUnitId;
 #elif UNITY_IPHONE
-  private string _adUnitId = "ca-app-pub-3940256099942544/2934735716";
+  private string _adUnitId ;
 #else
   private string _adUnitId = "unused";
 #endif

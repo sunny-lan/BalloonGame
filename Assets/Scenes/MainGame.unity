@@ -1186,10 +1186,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2505702472308749288, guid: cdfd6245c722b3e41a710cf8e635c134, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2505702472308749288, guid: cdfd6245c722b3e41a710cf8e635c134, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1316,10 +1312,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4007413950117532825, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4007413950117532825, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.4
       objectReference: {fileID: 0}
@@ -1359,41 +1351,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5032347769721205750, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
-      propertyPath: m_Mass
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5032347769721205750, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
-      propertyPath: m_LinearDrag
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6807012022393315714, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
-      propertyPath: jumpForce
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
-      propertyPath: speed.grab
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
-      propertyPath: speed.ground
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
-      propertyPath: baseJumpForce
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
-      propertyPath: maxAirVelocity
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7686592406297421595, guid: 228274bac4a107a40bdecbda93e0c11c, type: 3}
-      propertyPath: maxChargedJumpForce
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

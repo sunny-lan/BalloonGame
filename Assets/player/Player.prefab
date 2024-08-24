@@ -340,7 +340,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.5
-  m_LinearDrag: 0.1
+  m_LinearDrag: 0
   m_AngularDrag: 0.3
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: f7250e99050189244ab73c4e0f651151, type: 2}
@@ -367,13 +367,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed:
-    ground: 2
+    ground: 4
     air: 1
-    grab: 2
-  jumpForce: 2
+    grab: 4
+  jumpForce: 3
   jumpForcePerChargeTime: 2
-  maxChargedJumpForce: 4
-  baseJumpForce: 2
+  maxChargedJumpForce: 5
+  baseJumpForce: 3
   airJumpsAllowed: 1
   balloonGrabbedVelocity: -0.3
   handHitbox: {fileID: 1738618084248528035}
@@ -390,7 +390,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4241
   availJumps: 0
-  maxAirVelocity: 2.5
+  maxAirVelocity: 4
   ripple: {fileID: 7176604330260351060, guid: 3e06e0708368f6348b71a762947b5d05, type: 3}
   jumpInput:
     m_Name: Jump Input
@@ -478,8 +478,8 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: c15a7c9bd91f7ab4b965d80f5c8b898a, type: 3}
   jumpAnimTime: 0.05
   jumpRatio: 2
-  MaxHealth: 10
-  lives: 10
+  MaxHealth: 7
+  lives: 7
   deathShakeDuration: 0.2
   deathShakeAmt: 0.3
 --- !u!233 &1103080439538772762

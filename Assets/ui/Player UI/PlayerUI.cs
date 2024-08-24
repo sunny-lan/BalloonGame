@@ -92,7 +92,7 @@ public class PlayerUI : MonoBehaviour
 				ap.PlayOneShot(levelupSound);
 			}
 			lastLevel = lvl;
-			level.text = "Level " + lastLevel;
+			level.text = "Stage " + lastLevel;
 		}
 	}
 

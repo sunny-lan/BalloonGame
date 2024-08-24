@@ -366,6 +366,7 @@ public class PlayerController : MonoBehaviour
 		get => lives; set
 		{
 			lives = value;
+			Debug.Log($"lives = {lives}");
 			LivesChanged?.Invoke();
 		}
 	}

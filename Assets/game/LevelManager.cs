@@ -59,6 +59,8 @@ public class LevelManager : MonoBehaviour
 		var lives = Player.Lives;
 		if (lives < lastLives)
 		{
+			Debug.Log("Lost life");
+			StopGameLogic();
 			StartCoroutine(OnPlayerLostLife());
 		}
 		lastLives = lives;
@@ -85,10 +87,10 @@ public class LevelManager : MonoBehaviour
 	private IEnumerator OnPlayerLostLife()
 	{
 		var lives = GameManager.LevelManager.Player.Lives;
-		StopGameLogic();
 		yield return PlayerUI.PlayerLostLifeAnimation();
-		if (lives == 0)
+		if (lives <= 0)
 		{
+			Debug.Log("dead");
 			Lost();
 			yield break;
 		}
